@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 
 import com.ltt.overseas.R;
+import com.ltt.overseas.XApplication;
 
 import butterknife.ButterKnife;
 import io.reactivex.ObservableTransformer;
@@ -20,6 +21,7 @@ import io.reactivex.ObservableTransformer;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected String TAG = getClass().getSimpleName();
+    public boolean isForGround = false;
 
     private ProgressDialog loadingView;
 
@@ -38,16 +40,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(bindLayoutID());
         ButterKnife.bind(this);
         prepareActivity();
+        XApplication.getApplication().addActivity(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        isForGround = true;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        isForGround = false;
     }
 
     @Override

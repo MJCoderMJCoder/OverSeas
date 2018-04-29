@@ -1,27 +1,41 @@
 package com.ltt.overseas;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.multidex.MultiDex;
 
+
+import com.ltt.overseas.base.BaseActivity;
+import com.ltt.overseas.login.LoginActivity;
+import com.ltt.overseas.model.UserBean;
+import com.ltt.overseas.utils.PreferencesUtils;
+import com.ltt.overseas.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.ThemeConfig;
 
-
 public class XApplication extends Application {
 
-    private static Application app;
+    private static XApplication app;
 
-    public static Application getApplication() {
+    public static UserBean globalUserBean;
+
+    public static XApplication getApplication() {
         return app;
     }
-
 
     @Override
     public void onCreate() {
         super.onCreate();
         app = this;
+        globalUserBean = PreferencesUtils.getUserInfoPreference();
         init();
 //        initGalleryFinal();
     }
@@ -47,4 +61,72 @@ public class XApplication extends Application {
 
     }
 
+    //踢出处理
+    public Handler authHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+//			if(isActivityInForground()){
+//			while(!DemoHelper.getInstance().isLoggedIn()){
+//
+//			}
+            switch (msg.what) {
+                case 0:
+                    ToastUtils.showToast("账号在其他设备登录");
+                    break;
+                case 2:
+                    ToastUtils.showToast("注销成功");
+                    break;
+                default:
+                    ToastUtils.showToast("帐号登录过期,请重新登录");
+                    break;
+            }
+//            MyApplication.userData = null;
+//            PreferencesUtils.clearUserInfo();
+            Intent intent = new Intent(XApplication.getApplication(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finishActivity();
+            XApplication.getApplication().startActivity(intent);
+        }
+    };
+
+
+    /***************
+     * activity 管理开始
+     *********************/
+    private static List<Activity> list = new ArrayList<Activity>();
+
+    public void addActivity(BaseActivity baseActivity) {
+        list.add(baseActivity);
+    }
+
+    public void removeActivity(BaseActivity baseActivity) {
+        list.remove(baseActivity);
+    }
+
+    public void finishActivity() {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).finish();
+        }
+    }
+
+    public void finishOtherActivity(Activity activity) {
+        for (int i = 0; i < list.size(); i++) {
+            if (!list.get(i).equals(activity)) {
+                list.get(i).finish();
+            }
+        }
+    }
+
+    public boolean isActivityInForground() {
+        for (int i = 0; i < list.size(); i++) {
+            if (((BaseActivity) list.get(i)).isForGround) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /***************
+     * activity 管理结束
+     *********************/
 }

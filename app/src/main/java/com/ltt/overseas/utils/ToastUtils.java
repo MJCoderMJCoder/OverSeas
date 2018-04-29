@@ -16,7 +16,7 @@ import com.ltt.overseas.XApplication;
  * Created by lin on 2017/7/17.
  */
 
-public class T {
+public class ToastUtils {
 
     private static TextView message;
     private static Toast t;

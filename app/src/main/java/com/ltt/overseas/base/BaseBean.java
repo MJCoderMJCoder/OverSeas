@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class BaseBean implements Serializable {
 
+    private boolean status;
     private int code;
     private String msg;
 
@@ -21,5 +22,13 @@ public class BaseBean implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

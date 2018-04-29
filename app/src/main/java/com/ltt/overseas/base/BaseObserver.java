@@ -1,6 +1,7 @@
 package com.ltt.overseas.base;
 
 import com.ltt.overseas.utils.L;
+import com.ltt.overseas.utils.ToastUtils;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -32,7 +33,7 @@ public abstract class BaseObserver<T extends BaseBean> implements Observer<T> {
             handle(t);
         else {
             isFail = true;
-            com.ltt.overseas.utils.T.showToast(t.getMsg());
+            ToastUtils.showToast(t.getMsg());
         }
     }
 
