@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.ltt.overseas.MainActivity;
 import com.ltt.overseas.R;
+import com.ltt.overseas.XApplication;
 import com.ltt.overseas.base.BaseActivity;
 import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.core.ActionBar;
@@ -14,6 +15,7 @@ import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.UserBean;
+import com.ltt.overseas.utils.PreferencesUtils;
 import com.ltt.overseas.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -56,13 +58,12 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(this, ForgetActivity.class));
                 break;
             case R.id.iv_fblogin:
-                startActivity(new Intent(this, MainActivity.class));
+                ToastUtils.showToast("facebook login");
                 break;
             case R.id.iv_googlelogin:
-                startActivity(new Intent(this, MainActivity.class));
+                ToastUtils.showToast("google+ login");
                 break;
             case R.id.btn_login:
-                getPhoneList();
 //                startActivity(new Intent(this, MainActivity.class));
 //                if(judgeInput()){
 //                    login();
@@ -96,7 +97,12 @@ public class LoginActivity extends BaseActivity {
         loginCall.enqueue(new CustomerCallBack<GsonUserBean>() {
             @Override
             public void onResponseResult(GsonUserBean response) {
-                dismissLoadingView();
+                XApplication.globalUserBean = response.getData();
+                XApplication.globalUserBean.setEmail(mEmail);
+                XApplication.globalUserBean.setPassword(mPwd);
+                PreferencesUtils.saveUserInfoPreference(XApplication.globalUserBean);
+//                XApplication.globalUserBean.setAccess_token(response.getData().getAccess_token());
+                getProfile();
             }
 
             @Override
@@ -106,13 +112,14 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void getPhoneList(){
+    private void getProfile(){
         showLoadingView();
-        Call<PhoneListBean> call = RetrofitUtil.getAPIService().getCountryIds();
-        call.enqueue(new CustomerCallBack<PhoneListBean>() {
+        Call<GsonUserBean> call = RetrofitUtil.getAPIService().getProfile();
+        call.enqueue(new CustomerCallBack<GsonUserBean>() {
             @Override
-            public void onResponseResult(PhoneListBean response) {
+            public void onResponseResult(GsonUserBean response) {
                 dismissLoadingView();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
             @Override

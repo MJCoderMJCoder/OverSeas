@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.multidex.MultiDex;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
 
 import com.ltt.overseas.base.BaseActivity;
@@ -26,6 +29,8 @@ public class XApplication extends Application {
     private static XApplication app;
 
     public static UserBean globalUserBean;
+    public static int SCREEN_WIDTH = -1;
+    public static int SCREEN_HEIGHT = -1;
 
     public static XApplication getApplication() {
         return app;
@@ -37,6 +42,7 @@ public class XApplication extends Application {
         app = this;
         globalUserBean = PreferencesUtils.getUserInfoPreference();
         init();
+        getScreenSize();
 //        initGalleryFinal();
     }
 
@@ -49,8 +55,6 @@ public class XApplication extends Application {
                 .setEnableEdit(false)
                 .setEnableCrop(false)
                 .setEnableRotate(false)
-
-
                 .setCropSquare(true)
                 .setEnablePreview(false)
                 .setMutiSelectMaxSize(9)
@@ -89,6 +93,21 @@ public class XApplication extends Application {
         }
     };
 
+    private void getScreenSize() {
+        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        Display display = windowManager.getDefaultDisplay();
+        display.getMetrics(dm);
+//        DIMEN_RATE = dm.density / 1.0f
+//        DIMEN_DPI = dm.densityDpi
+        SCREEN_WIDTH = dm.widthPixels;
+        SCREEN_HEIGHT = dm.heightPixels;
+        if (SCREEN_WIDTH > SCREEN_HEIGHT) {
+            int t = SCREEN_HEIGHT;
+            SCREEN_HEIGHT = SCREEN_WIDTH;
+            SCREEN_WIDTH = t;
+        }
+    }
 
     /***************
      * activity 管理开始

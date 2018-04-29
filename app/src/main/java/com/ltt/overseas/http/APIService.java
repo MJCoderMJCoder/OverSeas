@@ -32,11 +32,11 @@ public interface APIService {
 
 
 //
-//    //3.1.3 修改密码
+//    //
 //    @PUT("users/changePwd")
 //    Call<String> changePwd(@Body UserParams userParams);
 
-//    //3.9.4 收货地址删除
+//    //
 //    @DELETE("address/{addressId}")
 //    Call<String> delAdddress(@Path("addressId") String addressId);
 

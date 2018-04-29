@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@mipmap/bg_rectangle_signup"
-                android:hint="Johndoe@mail.com"
+                android:hint="Email"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
                 android:textColor="@color/white"
@@ -101,23 +101,69 @@
                 android:textColorHint="@color/white"
                 android:textSize="15dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp7"
+                android:layout_marginTop="@dimen/dp13"
+                android:text="Phone Number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp13" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_area_code"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@mipmap/bg_rectangle_signup"
+                    android:hint="+852"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@mipmap/bg_rectangle_signup"
+                    android:hint="Phone Number"
+                    android:layout_marginLeft="15dp"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp13"
-                android:text="Country/Region"
+                android:text="Referral Code"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp13" />
 
             <EditText
-                android:id="@+id/et_address"
+                android:id="@+id/et_referral_code"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@mipmap/bg_rectangle_signup"
-                android:hint="Country/Regions"
+                android:hint="Referral Code"
                 android:paddingLeft="15dp"
+                android:inputType="text"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
@@ -145,21 +191,23 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/dp11"
                     android:layout_marginTop="@dimen/dp7"
-
                     android:text="Terms of Service and Privacy Policy"
                     />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/img_signup1"
-                    android:layout_marginTop="@dimen/dp15"
-                    />
-                <ImageView
+                    android:id="@+id/iv_google_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/img_signup2"
                     android:layout_marginTop="@dimen/dp5"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_fb_signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/img_signup1"
+                    android:layout_marginTop="@dimen/dp15"
                     />
 
                 <TextView
