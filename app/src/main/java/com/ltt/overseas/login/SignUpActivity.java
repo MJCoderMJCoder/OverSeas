@@ -219,7 +219,8 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onItemClick(Object object, View view, int position) {
                 shareDialog.dismiss();
-                tvAreaCode.setText(((PhoneBean) object).getText());
+                String text = ((PhoneBean) object).getText();
+                tvAreaCode.setText(text.substring(text.indexOf("(") + 1, text.indexOf(")")));
             }
         });
         rvDialogList.setAdapter(adapter);
