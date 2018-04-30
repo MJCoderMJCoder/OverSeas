@@ -25,17 +25,14 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectL
     @BindView(R.id.tab_menu)
     TabLayout tabLayout;
 
-    private boolean isFromRegister = false;
-
-
-    private String[] mTitles = {"Inbox", "Explore","Task", "Profile", "More"};
+    private String[] mTitles = {"Inbox", "Explore","Task", "More"};
     private long exitTime = 0;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
     private int[] mIconUnselectedIds = {
-            R.mipmap.icon_inbox, R.mipmap.icon_explore, R.mipmap.ic_task, R.mipmap.icon_profile, R.mipmap.icon_more};
+            R.mipmap.icon_inbox, R.mipmap.icon_explore, R.mipmap.ic_task, R.mipmap.icon_more};
     private int[] mIconSelectedIds = {
-            R.mipmap.icon_inbox, R.mipmap.icon_explore, R.mipmap.ic_task, R.mipmap.icon_profile, R.mipmap.icon_more};
+            R.mipmap.icon_inbox, R.mipmap.icon_explore, R.mipmap.ic_task, R.mipmap.icon_more};
 
     @Override
     protected int bindLayoutID() {
@@ -55,7 +52,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectL
         mFragments.add(new InboxFragment());
         mFragments.add(new ExploreFragment());
         mFragments.add(new TaskFragment());
-        mFragments.add(new ProfileFragment());
         mFragments.add(new MoreFragment());
         for (int i = 0; i < mTitles.length; i++)
             tabLayout.addTab(mTitles[i], mIconSelectedIds[i], mIconUnselectedIds[i], i);
@@ -73,8 +69,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectL
             case 2:
                 break;
             case 3:
-                break;
-            case 4:
                 break;
         }
     }
