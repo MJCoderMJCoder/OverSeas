@@ -30,6 +30,10 @@ public interface APIService {
     @GET("country/phone_list")
     Call<PhoneListBean> getCountryIds();
 
+    @POST("auth/forget")
+    Call<String> forgetPwd(@Body UserBean userParams);
+
+
 
 //
 //    //

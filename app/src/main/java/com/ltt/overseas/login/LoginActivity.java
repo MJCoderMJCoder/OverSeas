@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity {
                 ToastUtils.showToast("google+ login");
                 break;
             case R.id.btn_login:
-//                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
 //                if(judgeInput()){
 //                    login();
 //                }
