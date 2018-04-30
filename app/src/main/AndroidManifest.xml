@@ -61,6 +61,10 @@
             android:theme="@style/Translucent" />
 
         <activity
+            android:name=".main.tab.fragment.activity.ProfileActivity"
+            android:theme="@style/Translucent" />
+
+        <activity
             android:name=".main.tab.fragment.activity.TaskDetailActivity"
             android:theme="@style/Translucent" />
 

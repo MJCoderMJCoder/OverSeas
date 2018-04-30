@@ -16,6 +16,7 @@ import com.ltt.overseas.R;
 import com.ltt.overseas.XApplication;
 import com.ltt.overseas.base.BaseActivity;
 import com.ltt.overseas.base.BaseBean;
+import com.ltt.overseas.base.Constants;
 import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
@@ -86,9 +87,10 @@ public class SignUpActivity extends BaseActivity {
                 ToastUtils.showToast("facebook signup");
                 break;
             case R.id.btn_done:
-                if(judgeInput()){
-                    signup();
-                }
+                goHomePage();
+//                if(judgeInput()){
+//                    signup();
+//                }
                 break;
 
         }
@@ -137,6 +139,13 @@ public class SignUpActivity extends BaseActivity {
         });
     }
 
+    private void goHomePage(){
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        intent.putExtra(Constants.FROM_REGISTER, true);
+        startActivity(intent);
+        finish();
+    }
+
     private void getProfile(){
         showLoadingView();
         Call<GsonUserBean> call = RetrofitUtil.getAPIService().getProfile();
@@ -144,7 +153,7 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onResponseResult(GsonUserBean response) {
                 dismissLoadingView();
-                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                goHomePage();
             }
 
             @Override
