@@ -2,12 +2,15 @@ package com.ltt.overseas.http;
 
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.PhoneListBean;
+import com.ltt.overseas.model.SectionListBean;
+import com.ltt.overseas.model.TypeListBean;
 import com.ltt.overseas.model.UserBean;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by Administrator on 2016/5/20.
@@ -33,7 +36,13 @@ public interface APIService {
     @POST("auth/forget")
     Call<String> forgetPwd(@Body UserBean userParams);
 
+    //GET List all type
+    @GET("service/main/list_type")
+    Call<TypeListBean> getTypeList();
 
+    //Get Country id
+    @GET("service/main/list_section/{type_id}")
+    Call<SectionListBean> getSectionList(@Path("type_id") String typeId);
 
 //
 //    //
