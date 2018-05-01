@@ -40,7 +40,7 @@ public class InboxFragment extends BaseFragment {
     @Override
     protected void prepareFragment() {
         bar = ActionBar.init(actionBar);
-        bar.setTitle("Inbox");
+        bar.setTitle("My Message");
         bar.setLeft(R.mipmap.back, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

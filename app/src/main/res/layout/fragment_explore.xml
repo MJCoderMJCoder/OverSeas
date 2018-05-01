@@ -40,10 +40,20 @@
             android:layout_marginLeft="@dimen/dp8"
             android:src="@mipmap/iv_menu_explore" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task List"
+            android:textSize="@dimen/dp15"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginLeft="63dp"
+            />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/dp5"
             android:layout_marginRight="@dimen/dp5"
             android:background="@mipmap/btn_search_explore" />
@@ -60,6 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:visibility="gone"
         android:background="@color/white" />
     <TextView
         android:layout_width="wrap_content"
@@ -70,6 +81,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginLeft="83dp"
+        android:visibility="gone"
         />
 
     <com.lin.widget.SwipeRecyclerView
