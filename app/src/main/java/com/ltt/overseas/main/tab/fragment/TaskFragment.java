@@ -21,10 +21,8 @@ import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.activity.TaskDetailActivity;
-import com.ltt.overseas.main.tab.fragment.adapter.AllTaskAdapter;
-import com.ltt.overseas.main.tab.fragment.adapter.TaskAdapter;
-import com.ltt.overseas.main.tab.fragment.adapter.TaskFinishedAdapter;
-import com.ltt.overseas.main.tab.fragment.adapter.TaskUnlockedAdapter;
+import com.ltt.overseas.main.tab.fragment.adapter.MyResponseAdapter;
+import com.ltt.overseas.main.tab.fragment.adapter.MyTaskAdapter;
 
 import java.util.ArrayList;
 
@@ -49,10 +47,10 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     View actionBar;
     @BindView(R.id.tv_title_center)
     TextView tvTitle;
-    private TaskAdapter adapter;
-    private TaskFinishedAdapter finishedAdapter;
-    private TaskUnlockedAdapter taskUnlockedadapter;
-    private AllTaskAdapter allTaskAdapter;
+    private MyResponseAdapter myResponseAdapter;
+//    private TaskFinishedAdapter finishedAdapter;
+//    private TaskUnlockedAdapter taskUnlockedadapter;
+    private MyTaskAdapter myTaskAdapter;
     ActionBar bar;
     private ArrayList<String> list = new ArrayList<String>();
 
@@ -74,8 +72,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         });
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TaskAdapter();
-        recyclerView.setAdapter(adapter);
+        myTaskAdapter = new MyTaskAdapter();
+        recyclerView.setAdapter(myTaskAdapter);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_text, getData());
         listview.setAdapter(arrayAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,7 +84,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 changeUi(i);
             }
         });
-        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+        myTaskAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
                 startActivity(new Intent(getActivity(), TaskDetailActivity.class));
@@ -97,21 +95,21 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private void changeUi(int i) {
         switch (i) {
             case 0:
-                allTaskAdapter=new AllTaskAdapter();
-                recyclerView.setAdapter(allTaskAdapter);
+                myResponseAdapter = new MyResponseAdapter();
+                recyclerView.setAdapter(myResponseAdapter);
                 break;
             case 1:
-                adapter = new TaskAdapter();
-                recyclerView.setAdapter(adapter);
+                myTaskAdapter = new MyTaskAdapter();
+                recyclerView.setAdapter(myTaskAdapter);
                 break;
-            case 2:
-                taskUnlockedadapter = new TaskUnlockedAdapter();
-                recyclerView.setAdapter(taskUnlockedadapter);
-                break;
-            case 3:
-                finishedAdapter = new TaskFinishedAdapter();
-                recyclerView.setAdapter(finishedAdapter);
-                break;
+//            case 2:
+//                taskUnlockedadapter = new TaskUnlockedAdapter();
+//                recyclerView.setAdapter(taskUnlockedadapter);
+//                break;
+//            case 3:
+//                finishedAdapter = new TaskFinishedAdapter();
+//                recyclerView.setAdapter(finishedAdapter);
+//                break;
         }
     }
 
@@ -138,10 +136,10 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     }
 
     private ArrayList<String> getData() {
-        list.add("All My Task");
-        list.add("Pin");
-        list.add("Unlocked");
-        list.add("Finished");
+//        list.add("All My Task");
+//        list.add("Pin");
+        list.add("My Response");
+        list.add("My Task");
         return list;
     }
 
