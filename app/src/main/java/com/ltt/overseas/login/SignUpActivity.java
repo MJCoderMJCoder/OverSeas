@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -74,12 +75,12 @@ public class SignUpActivity extends BaseActivity {
         bar.setTitle("SIGN UP");
     }
 
-    @OnClick({R.id.tv_area_code, R.id.iv_google_signup, R.id.iv_fb_signup, R.id.btn_done})
+    @OnClick({R.id.iv_google_signup, R.id.iv_fb_signup, R.id.btn_done})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_area_code:
-                getPhoneList();
-                break;
+            //case R.id.tv_area_code:
+              //  getPhoneList();
+              //  break;
             case R.id.iv_google_signup:
                 ToastUtils.showToast("google+ signup");
                 break;
@@ -87,10 +88,10 @@ public class SignUpActivity extends BaseActivity {
                 ToastUtils.showToast("facebook signup");
                 break;
             case R.id.btn_done:
-                goHomePage();
-//                if(judgeInput()){
-//                    signup();
-//                }
+//                goHomePage();
+                if(judgeInput()){
+                    signup();
+                }
                 break;
 
         }
@@ -98,38 +99,21 @@ public class SignUpActivity extends BaseActivity {
 
     private void signup(){
         showLoadingView();
-        UserBean userParams = new UserBean();
-        userParams.setEmail(mEmail);
-        userParams.setPassword(mPwd);
-        Call<GsonUserBean> loginCall = RetrofitUtil.getAPIService().login(userParams);
+        UserBean signParam = new UserBean();
+        signParam.setEmail(mEmail);
+        signParam.setPassword(mPwd);
+        signParam.setCountry_id(mAreaCode);
+        signParam.setFirstname(mFirstName);
+        signParam.setLastname(mLastName);
+        signParam.setPhone(mPhone);
+        Call<GsonUserBean> loginCall = RetrofitUtil.getAPIService().register(signParam);
         loginCall.enqueue(new CustomerCallBack<GsonUserBean>() {
             @Override
             public void onResponseResult(GsonUserBean response) {
-                login();
-            }
-
-            @Override
-            public void onResponseError(BaseBean errorMsg, boolean isNetError) {
+                Log.d("register:",""+response.getMsg());
+                ToastUtils.showToast(response.getMsg());
                 dismissLoadingView();
-            }
-        });
-    }
-
-    private void login(){
-        showLoadingView();
-        UserBean userParams = new UserBean();
-        userParams.setEmail(mEmail);
-        userParams.setPassword(mPwd);
-        Call<GsonUserBean> loginCall = RetrofitUtil.getAPIService().login(userParams);
-        loginCall.enqueue(new CustomerCallBack<GsonUserBean>() {
-            @Override
-            public void onResponseResult(GsonUserBean response) {
-                XApplication.globalUserBean = response.getData();
-                XApplication.globalUserBean.setEmail(mEmail);
-                XApplication.globalUserBean.setPassword(mPwd);
-                PreferencesUtils.saveUserInfoPreference(XApplication.globalUserBean);
-//                XApplication.globalUserBean.setAccess_token(response.getData().getAccess_token());
-                getProfile();
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
 
             @Override
