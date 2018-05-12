@@ -7,6 +7,7 @@ public class BaseBean implements Serializable {
     private boolean status;
     private int code;
     private String msg;
+    private String access_token;
 
     public int getCode() {
         return code;
@@ -32,12 +33,11 @@ public class BaseBean implements Serializable {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "BaseBean{" +
-                "status=" + status +
-                ", code=" + code +
-                ", msg='" + msg + '\'' +
-                '}';
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 }
