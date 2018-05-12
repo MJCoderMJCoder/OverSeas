@@ -94,4 +94,20 @@ public class UserBean extends BaseBean {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", state='" + state + '\'' +
+                ", country_id='" + country_id + '\'' +
+                ", phone='" + phone + '\'' +
+                ", access_token='" + access_token + '\'' +
+                ", password='" + password + '\'' +
+                "} " + super.toString();
+    }
 }

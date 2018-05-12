@@ -15,4 +15,11 @@ public class TypeListBean extends BaseBean {
     public void setData(List<TypeBean> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "TypeListBean{" +
+                "data=" + data +
+                "} " + super.toString();
+    }
 }

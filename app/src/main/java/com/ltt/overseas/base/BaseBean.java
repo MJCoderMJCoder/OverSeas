@@ -31,4 +31,13 @@ public class BaseBean implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "BaseBean{" +
+                "status=" + status +
+                ", code=" + code +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_marginLeft="@dimen/dp15"
-    android:layout_marginRight="@dimen/dp15"
-    android:layout_marginTop="@dimen/dp10"
-    android:background="@mipmap/bg_item_inbox">
+              android:layout_width="match_parent"
+              android:layout_height="150dp"
+              android:layout_marginLeft="@dimen/dp15"
+              android:layout_marginRight="@dimen/dp15"
+              android:layout_marginTop="@dimen/dp10"
+              android:background="@mipmap/bg_item_inbox">
 
     <LinearLayout
         android:layout_width="@dimen/dp112"
@@ -18,7 +18,7 @@
             android:id="@+id/iv_logo"
             android:layout_width="@dimen/dp56"
             android:layout_height="@dimen/dp56"
-            android:src="@mipmap/iv_photo_moren" />
+            android:src="@mipmap/iv_photo_moren"/>
 
         <TextView
             android:id="@+id/tv_nickname"
@@ -27,28 +27,30 @@
             android:gravity="center"
             android:text="Kobe Lee"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp15" />
+            android:textSize="@dimen/dp15"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp5"
-            android:visibility="invisible"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            android:visibility="invisible"
             >
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/iv_person_star"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(66)"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp10" />
+                android:textSize="@dimen/dp10"/>
         </LinearLayout>
 
 
@@ -66,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="Location:"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp10" />
+                android:textSize="@dimen/dp10"/>
         </LinearLayout>
 
 
@@ -82,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="Location:"
                 android:textColor="@color/lightblack_task"
-                android:textSize="@dimen/dp8" />
+                android:textSize="@dimen/dp8"/>
 
             <TextView
                 android:id="@+id/tv_location"
@@ -90,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hong Kong"
                 android:textColor="@color/lightblack_task"
-                android:textSize="@dimen/dp8" />
+                android:textSize="@dimen/dp8"/>
 
         </LinearLayout>
 
@@ -100,8 +102,8 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_gravity="right"
+        android:layout_weight="1"
         android:gravity="right"
         android:padding="@dimen/dp10">
 
@@ -109,24 +111,25 @@
             android:id="@+id/tv_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp24"
-            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dp24"
             android:text="Looking for used excavator"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp13" />
+            android:textSize="@dimen/dp13"/>
 
         <TextView
+            android:id="@+id/dateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp5"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
             android:layout_below="@id/tv_hint"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dp5"
+            android:gravity="center"
             android:text="7 days ago"
             android:textColor="@color/black"
-            android:textSize="@dimen/dp11" />
+            android:textSize="@dimen/dp11"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -135,14 +138,15 @@
             android:layout_alignParentRight="true"
             android:orientation="horizontal"
             >
+
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="@dimen/dp35"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
+                android:background="@mipmap/bg_myprofile_person"
                 android:gravity="center"
                 android:text="Details"
-                android:background="@mipmap/bg_myprofile_person"
+                android:textColor="@color/white"
                 />
         </LinearLayout>
 

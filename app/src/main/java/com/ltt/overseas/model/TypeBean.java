@@ -58,4 +58,16 @@ public class TypeBean extends BaseBean {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    @Override
+    public String toString() {
+        return "TypeBean{" +
+                "type_id='" + type_id + '\'' +
+                ", type_name='" + type_name + '\'' +
+                ", icon_image='" + icon_image + '\'' +
+                ", banner_image='" + banner_image + '\'' +
+                ", seo_name='" + seo_name + '\'' +
+                ", logo='" + logo + '\'' +
+                "} " + super.toString();
+    }
 }
