@@ -1,6 +1,7 @@
 package com.ltt.overseas.http;
 
 import com.ltt.overseas.model.GsonUserBean;
+import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
@@ -23,7 +24,10 @@ public interface APIService {
 
     //Login
     @POST("auth/login")
-    Call<GsonUserBean> login(@Body UserBean userParams);
+    Call<GsonUserBean> login(@Body LoginBean userParams);
+
+    @POST("auth/register")
+    Call<GsonUserBean> register(@Body UserBean userParams);
 
     //Get profile
     @GET("user")
