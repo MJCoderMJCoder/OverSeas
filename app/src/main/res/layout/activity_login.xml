@@ -28,12 +28,13 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:layout_marginTop="14dp"
+            android:background="@mipmap/rectangle"
             android:hint="Email"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:text="awesome@luqman.rocks"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:background="@mipmap/rectangle"
-            android:singleLine="true"
-            android:paddingLeft="15dp"
             android:textSize="15dp" />
 
 
@@ -44,13 +45,14 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:layout_marginTop="14dp"
+            android:background="@mipmap/rectangle"
             android:hint="Password"
             android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:text="test123"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:background="@mipmap/rectangle"
-            android:singleLine="true"
-            android:paddingLeft="15dp"
             android:textSize="15dp" />
 
 
