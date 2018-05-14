@@ -6,6 +6,7 @@ import android.view.View;
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseFragment;
 import com.ltt.overseas.core.ActionBar;
+import com.ltt.overseas.main.tab.fragment.activity.HelpActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.activity.ProfileActivity;
 import com.ltt.overseas.main.tab.fragment.activity.SettingNotificationActivity;
@@ -58,6 +59,7 @@ public class MoreFragment extends BaseFragment {
                 dialog1.show();
                 break;
             case R.id.tv_help:
+                startActivity(new Intent(getActivity(), HelpActivity.class));
                 break;
             case R.id.tv_support:
                 break;
