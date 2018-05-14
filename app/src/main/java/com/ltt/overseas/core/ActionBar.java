@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.ltt.overseas.R;
 
-
 public class ActionBar {
 
     View container;
@@ -23,6 +22,11 @@ public class ActionBar {
     TextView rightBtn;
     ImageView img_center;
     RelativeLayout rl_content;
+    ImageView mBtnLeft2;
+
+    RelativeLayout rl_usertitle;
+    TextView tv_top;
+    TextView tv_bottom;
 
     private ActionBar() {
 
@@ -54,6 +58,7 @@ public class ActionBar {
         container = view;
         statusBar = view.findViewById(R.id.status_bar);
         btnLeft = (ImageView) view.findViewById(R.id.btn_left);
+        mBtnLeft2 = (ImageView) view.findViewById(R.id.btn_left2);
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
         btnRight = (ImageView) view.findViewById(R.id.btn_right);
         btnRight2 = (ImageView) view.findViewById(R.id.btn_right2);
@@ -61,6 +66,10 @@ public class ActionBar {
         rightBtn = (TextView) view.findViewById(R.id.right_btn);
         img_center= (ImageView) view.findViewById(R.id.img_center);
         rl_content= (RelativeLayout) view.findViewById(R.id.rl_content);
+
+        rl_usertitle = (RelativeLayout) view.findViewById(R.id.rl_usertitle);
+        tv_top = (TextView) view.findViewById(R.id.tv_top);
+        tv_bottom = (TextView) view.findViewById(R.id.tv_bottom);
 
     }
     public void showcenter(){
@@ -103,6 +112,17 @@ public class ActionBar {
         btnLeft.setOnClickListener(listener);
     }
 
+    public void setLeft2(int resId) {
+        mBtnLeft2.setVisibility(View.VISIBLE);
+        mBtnLeft2.setImageResource(resId);
+    }
+
+    public void setLeft2(int resId , View.OnClickListener listener) {
+        mBtnLeft2.setVisibility(View.VISIBLE);
+        mBtnLeft2.setImageResource(resId);
+        mBtnLeft2.setOnClickListener(listener);
+    }
+
     public void setRight(int resId, View.OnClickListener listener) {
         btnRight.setImageResource(resId);
         btnRight.setOnClickListener(listener);
@@ -128,8 +148,24 @@ public class ActionBar {
         rightBtn.setVisibility(View.VISIBLE);
     }
 
+    public void showRlTitle() {
+        rl_usertitle.setVisibility(View.VISIBLE);
+    }
+
+    public void setTop(String top) {
+        tv_top.setText(top);
+    }
+
+    public void setBottom(String bottm) {
+        tv_bottom.setText(bottm);
+    }
+
     public ImageView getLeft() {
         return btnLeft;
+    }
+
+    public ImageView getLeft2() {
+        return mBtnLeft2;
     }
 
     public ImageView getRight() {

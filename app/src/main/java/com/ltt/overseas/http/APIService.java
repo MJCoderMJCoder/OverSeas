@@ -2,6 +2,7 @@ package com.ltt.overseas.http;
 
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.LoginBean;
+import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
@@ -62,6 +63,9 @@ public interface APIService {
     @POST("auth/login")
     Call<UserBean> loginTest(@Body UserBean userParams);
 
+    //Get message list
+    @GET("service/message/user")
+    Call<MessageListBean> getMessageLists(@Query("page") int page);
     //
     //    //
     //    @PUT("users/changePwd")
