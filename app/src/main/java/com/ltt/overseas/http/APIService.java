@@ -1,5 +1,7 @@
 package com.ltt.overseas.http;
 
+import com.ltt.overseas.model.ExploreQuestionBean;
+import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
@@ -52,6 +54,11 @@ public interface APIService {
     //Get Country id
     @GET("service/main/list_section/{type_id}")
     Call<SectionListBean> getSectionList(@Path("type_id") String typeId);
+
+    //Get Country id
+    @GET("service/main/view_request/{section_id}")
+    Call<ExploreResponseDataBean> getQuestions(@Path("section_id") String sectionId);
+
 
     @GET("service/service_provider/response/list_response")
     Call<ResponseListBean> getResponseList(@Query("page") String page, @Header("Authorization") String authorization);

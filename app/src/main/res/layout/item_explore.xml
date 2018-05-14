@@ -54,10 +54,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp7"
-                android:text="Looking for used excavator"
+                android:text="Looking for used excavatord"
+                android:maxEms="13"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp12"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:id="@+id/explore_item_title"/>
 
             <TextView
                 android:layout_width="wrap_content"

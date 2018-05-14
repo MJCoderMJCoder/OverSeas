@@ -37,63 +37,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".login.SignUpActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".login.ForgetActivity"
             android:theme="@style/Translucent" />
-
-
         <activity
             android:name=".login.EmailSendActivity"
             android:theme="@style/Translucent" />
-
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.ProfileActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.TaskDetailActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.RechareActivity"
             android:theme="@style/Translucent" />
         <activity
             android:name=".main.tab.fragment.activity.PaymentActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.AddCardActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.AddCardDialogActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.SettingNotificationActivity"
             android:theme="@style/Translucent" />
         <activity
             android:name=".main.tab.fragment.activity.PersonInfomationActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.VertificationActivity"
             android:theme="@style/Translucent" />
-
         <activity
             android:name=".main.tab.fragment.activity.ExploreActivity"
             android:theme="@style/Translucent" />
@@ -105,7 +90,6 @@
         <activity android:name=".main.tab.fragment.activity.NowPaymentActivity"
             android:theme="@style/Translucent"
             />
-
         <activity android:name=".main.tab.fragment.activity.ChatsActivity"
                   android:theme="@style/Translucent"/>
     </application>

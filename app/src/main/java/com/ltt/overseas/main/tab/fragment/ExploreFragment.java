@@ -12,16 +12,25 @@ import android.widget.LinearLayout;
 
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
+import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.base.BaseFragment;
 import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
+import com.ltt.overseas.http.CustomerCallBack;
+import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.activity.ExploreActivity;
+import com.ltt.overseas.main.tab.fragment.activity.ExploreDetailActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.ExploreAdapter;
+import com.ltt.overseas.model.ExploreQuestionBean;
+import com.ltt.overseas.model.ExploreQuestionListBean;
+import com.ltt.overseas.model.ExploreResponseDataBean;
+import com.ltt.overseas.model.SectionBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
 
 /**
  * Created by Administrator on 2018/1/18.
@@ -52,16 +61,21 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ExploreAdapter();
+        getQuestionList();
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-                LinearLayout rl2 = (LinearLayout) view.findViewById(R.id.rl_2);
-                LinearLayout rl3 = (LinearLayout) view.findViewById(R.id.rl_3);
-                rl2.setVisibility(View.GONE);
-                rl3.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getContext(), ExploreDetailActivity.class);
+              //  intent.putExtra("sectionid",((SectionBean)object).getSection_id());
+                startActivity(intent);
             }
         });
+        ExploreQuestionListBean collection=new ExploreQuestionListBean();
+        collection.setQuestion_answer("测试");
+        collection.setQuestion_title("测试");
+        adapter.add(collection);
+
     }
 
     @OnClick({R.id.iv_menu, R.id.iv_notify})
@@ -81,6 +95,23 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
     public void onRefresh() {
         refreshLayout.setRefreshing(false);
     }
+    private void getQuestionList() {
+        showLoadingView();
+        Call<ExploreResponseDataBean> call = RetrofitUtil.getAPIService().getQuestions("2");
+        call.enqueue(new CustomerCallBack<ExploreResponseDataBean>() {
+            @Override
+            public void onResponseResult(ExploreResponseDataBean response) {
+                dismissLoadingView();
+                adapter.addAll(response.getData().get(0).getQuestions());
 
+            }
+
+            @Override
+            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+                dismissLoadingView();
+            }
+
+        });
+    }
 
 }

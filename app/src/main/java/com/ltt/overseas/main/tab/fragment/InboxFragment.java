@@ -78,7 +78,7 @@ public class InboxFragment extends BaseFragment {
         initData();
     }
 
-    // TODO: 2018/5/8 璇锋眰娑堟伅鍒楄〃淇℃伅
+    // TODO: 2018/5/8 请求消息列表信息
     protected void initData() {
         Call<MessageListBean> messageLists = RetrofitUtil.getAPIService().getMessageLists(1);
         messageLists.enqueue(new CustomerCallBack<MessageListBean>() {

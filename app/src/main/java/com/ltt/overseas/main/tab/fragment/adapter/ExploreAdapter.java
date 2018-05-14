@@ -6,9 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.RecyclerAdapter;
+import com.ltt.overseas.model.ExploreQuestionBean;
+import com.ltt.overseas.model.ExploreQuestionListBean;
+import com.ltt.overseas.model.ListQuestionBean;
+import com.ltt.overseas.model.TypeBean;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2018/1/21.
  */
 public class ExploreAdapter extends RecyclerAdapter {
-
+    private List<Object> list = new ArrayList<>();
     @Override
     public RecyclerView.ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
         if(viewType!=3)
@@ -26,20 +35,31 @@ public class ExploreAdapter extends RecyclerAdapter {
             return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_explore_another, parent, false));
 
     }
-
+    public void addAll(Collection<? extends Object> collection) {
+        if (collection == null) {
+            return;
+        }
+        list.addAll(collection);
+        notifyDataSetChanged();
+    }
+    public void add( ExploreQuestionListBean collection) {
+        list.add(collection);
+        notifyDataSetChanged();
+    }
     @Override
     public int getContentItemCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Holder holder1= (Holder) holder;
+        final ExploreQuestionListBean data = (ExploreQuestionListBean)(list.get(position));
+        ((ExploreAdapter.Holder) holder).tvName.setText(data.getQuestion_title());
     }
 
     public class Holder extends RecyclerHolder {
@@ -54,6 +74,8 @@ public class ExploreAdapter extends RecyclerAdapter {
         public Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
         }
+        TextView tvName = (TextView) itemView.findViewById(R.id.explore_item_title);
     }
 }

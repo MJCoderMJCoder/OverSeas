@@ -7,7 +7,7 @@ public class Constants {
 
     public static final String FROM_REGISTER = "from_register";
 
-    //鑱婂ぉ淇℃伅鏁版嵁瀛楁
+    //聊天信息数据字段
     public static String CREATEAT = "createdAt";
     public static String MESSAGE = "message";
     public static String SENDERID = "senderId";
@@ -16,7 +16,7 @@ public class Constants {
     public static String REQUESTER = "requester";
     public static String SERVICE_PROVIDER = "service_provider";
 
-    //鑱婂ぉ淇℃伅鏁版嵁绫诲瀷
+    //聊天信息数据类型
     public static int FROMLEFTTXT = 0x111;
     public static int FROMRIGHTTXT = 0x222;
     public static int FROMLEFTPIC = 0x333;

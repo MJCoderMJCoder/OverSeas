@@ -1,6 +1,8 @@
 package com.ltt.overseas.main.tab.fragment.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ListView;
@@ -16,6 +18,8 @@ import com.ltt.overseas.main.tab.fragment.adapter.PopupAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.SectionListAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.TypeListAdapter;
 import com.ltt.overseas.model.PhoneListBean;
+import com.ltt.overseas.model.SectionBean;
+import com.ltt.overseas.model.SectionListBean;
 import com.ltt.overseas.model.TypeBean;
 import com.ltt.overseas.model.TypeListBean;
 
@@ -69,16 +73,18 @@ public class ExploreActivity extends BaseActivity {
                 }
             }
         });
-//        parentAdapter = new PopupAdapter(this,R.layout.popup_item,parentList,R.drawable.normal,R.drawable.press2);
-//        childAdapter = new PopupAdapter(this,R.layout.popup_item,childValues,R.drawable.normal,R.drawable.press);
         childAdapter = new SectionListAdapter(this, R.drawable.normal, R.drawable.press);
         childAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-
+            finish();
             }
         });
+        LinearLayoutManager parentManager = new LinearLayoutManager(this );
+        parentLv.setLayoutManager(parentManager);
         parentLv.setAdapter(parentAdapter);
+        LinearLayoutManager childManager = new LinearLayoutManager(this );
+        childLv.setLayoutManager(childManager);
         childLv.setAdapter(childAdapter);
     }
 
@@ -104,14 +110,14 @@ public class ExploreActivity extends BaseActivity {
         });
     }
 
-    private void getSectionList(){
+    private void getSectionList() {
         showLoadingView();
-        Call<PhoneListBean> call = RetrofitUtil.getAPIService().getCountryIds();
-        call.enqueue(new CustomerCallBack<PhoneListBean>() {
+        Call<SectionListBean> call = RetrofitUtil.getAPIService().getSectionList(mTypeBean.getType_id());
+        call.enqueue(new CustomerCallBack<SectionListBean>() {
             @Override
-            public void onResponseResult(PhoneListBean response) {
+            public void onResponseResult(SectionListBean response) {
                 dismissLoadingView();
-                childAdapter.addAll(response.getData());
+                childAdapter.addAll(response.getData().get(0).getSection_list());
             }
 
             @Override

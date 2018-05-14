@@ -1,5 +1,7 @@
 package com.ltt.overseas.model;
 
+import com.ltt.overseas.model.SectionBean;
+import com.ltt.overseas.model.TypeBean;
 import com.ltt.overseas.base.BaseBean;
 
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 public class TypeSectionBean extends BaseBean {
 
     private TypeBean type;
-    private List<SectionBean> scetion_list;
+      private List<SectionBean> section_list;
 
     public TypeBean getType() {
         return type;
@@ -17,12 +19,12 @@ public class TypeSectionBean extends BaseBean {
         this.type = type;
     }
 
-    public List<SectionBean> getScetion_list() {
-        return scetion_list;
+    public List<SectionBean> getSection_list() {
+        return section_list;
     }
 
-    public void setScetion_list(List<SectionBean> scetion_list) {
-        this.scetion_list = scetion_list;
+    public void setSection_list(List<SectionBean> section_list) {
+        this.section_list = section_list;
     }
 
 }
