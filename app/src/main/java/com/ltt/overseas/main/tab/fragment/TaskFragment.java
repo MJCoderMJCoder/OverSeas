@@ -22,8 +22,8 @@ import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
+import com.ltt.overseas.main.tab.fragment.activity.MyRequestDetailActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
-import com.ltt.overseas.main.tab.fragment.activity.TaskDetailActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.MyResponseAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.MyTaskAdapter;
 import com.ltt.overseas.model.RequestBean;
@@ -109,7 +109,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
             }
         });
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_text, getData());
@@ -156,7 +157,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Object object, View view, int position) {
-                        startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                        //                        startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                        startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
                     }
                 });
                 break;
@@ -173,7 +175,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                             myTaskAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(Object object, View view, int position) {
-                                    startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                                    //                                    startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                                    startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
                                 }
                             });
                         } else {
