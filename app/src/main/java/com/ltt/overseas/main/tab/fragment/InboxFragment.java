@@ -47,7 +47,8 @@ public class InboxFragment extends BaseFragment {
     private InboxAdapter adapter;
     private List<MessageListBean.DataBean> mMessageLists = new ArrayList<>();
 
-
+    //Existing chat personnel information.
+    private List<String> chatUserName = new ArrayList<>();
     @Override
     protected int bindLayoutID() {
         return R.layout.fragment_inbox;
@@ -118,6 +119,9 @@ public class InboxFragment extends BaseFragment {
                 } else {
                     mMessageLists.addAll(data);
                     adapter.notifyDataSetChanged();
+                    for (int i = 0; i < data.size(); i++) {
+                        chatUserName.add(data.get(i).getUser());
+                    }
                 }
             }
             @Override
