@@ -111,7 +111,7 @@ public class InboxFragment extends BaseFragment {
         messageLists.enqueue(new CustomerCallBack<MessageListBean>() {
             @Override
             public void onResponseResult(MessageListBean messageListBean) {
-                L.e(TAG + "---" + messageListBean.getTotal_message() + "---" + messageListBean.getCode());
+                L.e(TAG + "---" + messageListBean.getTotal_message() + "--" + messageListBean.getCode());
                 List<MessageListBean.DataBean> data = messageListBean.getData();
                 if (data == null) {
                     adapter.notifyDataSetChanged();
