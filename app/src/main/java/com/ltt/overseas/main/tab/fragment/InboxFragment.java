@@ -83,12 +83,12 @@ public class InboxFragment extends BaseFragment {
         initData();
     }
 
-    /**åˆ·æ–°ç•Œé¢ä¿¡æ¯*/
+    /**Ë¢ĞÂ½çÃæĞÅÏ¢*/
     private void setRefresh() {
         refreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        // è®¾ç½®ä¸‹æ‹‰è¿›åº¦çš„ä¸»é¢˜é¢œè‰²
+        // ÉèÖÃÏÂÀ­½ø¶ÈµÄÖ÷ÌâÑÕÉ«
         refreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
-        // ä¸‹æ‹‰æ—¶è§¦å‘SwipeRefreshLayoutçš„ä¸‹æ‹‰åŠ¨ç”»ï¼ŒåŠ¨ç”»å®Œæ¯•ä¹‹åå°±ä¼šå›è°ƒè¿™ä¸ªæ–¹æ³•
+        // ÏÂÀ­Ê±´¥·¢SwipeRefreshLayoutµÄÏÂÀ­¶¯»­£¬¶¯»­Íê±ÏÖ®ºó¾Í»á»Øµ÷Õâ¸ö·½·¨
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -97,7 +97,7 @@ public class InboxFragment extends BaseFragment {
                     public void run() {
                         adapter.notifyDataSetChanged();
                         ToastUtils.showToast("Refresh the data");
-                        // åŠ è½½å®Œæ•°æ®è®¾ç½®ä¸ºä¸åˆ·æ–°çŠ¶æ€ï¼Œå°†ä¸‹æ‹‰è¿›åº¦æ”¶èµ·æ¥
+                        // ¼ÓÔØÍêÊı¾İÉèÖÃÎª²»Ë¢ĞÂ×´Ì¬£¬½«ÏÂÀ­½ø¶ÈÊÕÆğÀ´
                         refreshLayout.setRefreshing(false);
                     }
                 }, 1200);
@@ -105,7 +105,7 @@ public class InboxFragment extends BaseFragment {
         });
     }
 
-    // TODO: 2018/5/8 è¯·æ±‚æ¶ˆæ¯åˆ—è¡¨ä¿¡æ¯
+    // TODO: 2018/5/8 ÇëÇóÏûÏ¢ÁĞ±íĞÅÏ¢
     protected void initData() {
         Call<MessageListBean> messageLists = RetrofitUtil.getAPIService().getMessageLists(1);
         messageLists.enqueue(new CustomerCallBack<MessageListBean>() {
