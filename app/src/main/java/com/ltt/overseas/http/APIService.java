@@ -64,7 +64,7 @@ public interface APIService {
     Call<UserBean> loginTest(@Body UserBean userParams);
 
     //Get message list
-    @GET("service/message/user")
+    @GET("service/message/service_provider")
     Call<MessageListBean> getMessageLists(@Query("page") int page);
     //
     //    //
