@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.multidex.MultiDex;
+
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;

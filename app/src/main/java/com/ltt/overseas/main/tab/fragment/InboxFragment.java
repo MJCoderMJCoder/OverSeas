@@ -10,14 +10,25 @@ import android.view.ViewGroup;
 
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
+import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.base.BaseFragment;
+import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
+import com.ltt.overseas.http.CustomerCallBack;
+import com.ltt.overseas.http.RetrofitUtil;
+import com.ltt.overseas.main.tab.fragment.activity.ChatsActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.InboxAdapter;
+import com.ltt.overseas.model.MessageListBean;
+import com.ltt.overseas.utils.L;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
 
 /**
  * Created by Administrator on 2018/1/18.
@@ -31,6 +42,8 @@ public class InboxFragment extends BaseFragment {
     SwipeRefreshLayout refreshLayout;
     ActionBar bar;
     private InboxAdapter adapter;
+    private List<MessageListBean.DataBean> mMessageLists = new ArrayList<>();
+
 
     @Override
     protected int bindLayoutID() {
@@ -49,10 +62,43 @@ public class InboxFragment extends BaseFragment {
         });
         bar.showNotify();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new InboxAdapter();
+        adapter = new InboxAdapter(mMessageLists);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Object object, View view, int position) {
+                MessageListBean.DataBean dataBean = mMessageLists.get(position);
+                Intent intent = new Intent(getActivity(), ChatsActivity.class);
+                intent.putExtra("username", dataBean.getUser());
+                intent.putExtra("request_category", dataBean.getRequest_category());
+                intent.putExtra("conversation_id", dataBean.getConversation_id());
+                startActivity(intent);
+            }
+        });
+        initData();
     }
 
+    // TODO: 2018/5/8 请求消息列表信息
+    protected void initData() {
+        Call<MessageListBean> messageLists = RetrofitUtil.getAPIService().getMessageLists(1);
+        messageLists.enqueue(new CustomerCallBack<MessageListBean>() {
+            @Override
+            public void onResponseResult(MessageListBean messageListBean) {
+                L.e(TAG + "---" + messageListBean.getTotal_message() + "---" + messageListBean.getCode());
+                List<MessageListBean.DataBean> data = messageListBean.getData();
+                if (data == null) {
+                    adapter.notifyDataSetChanged();
+                } else {
+                    mMessageLists.addAll(data);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+
+            }
+        });
+    }
 
     @OnClick({R.id.iv_notify})
     public void onClick(View view) {
