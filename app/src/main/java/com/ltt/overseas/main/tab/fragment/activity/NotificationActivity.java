@@ -1,5 +1,6 @@
 package com.ltt.overseas.main.tab.fragment.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseActivity;
+import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.main.tab.fragment.adapter.InboxAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.NotificationAdapter;
@@ -54,6 +56,14 @@ public class NotificationActivity extends BaseActivity {
         toprecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         bottomrecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new NotificationAdapter();
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Object object, View view, int position) {
+                Intent intent = new Intent(NotificationActivity.this, ChatsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         toprecycle.setAdapter(adapter);
         bottomrecycle.setAdapter(adapter);
     }

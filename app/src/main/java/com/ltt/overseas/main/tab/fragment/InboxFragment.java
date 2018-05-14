@@ -2,11 +2,13 @@ package com.ltt.overseas.main.tab.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
@@ -21,6 +23,7 @@ import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.InboxAdapter;
 import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.utils.L;
+import com.ltt.overseas.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,8 @@ public class InboxFragment extends BaseFragment {
     private InboxAdapter adapter;
     private List<MessageListBean.DataBean> mMessageLists = new ArrayList<>();
 
-
+    //Existing chat personnel information.
+    private List<String> chatUserName = new ArrayList<>();
     @Override
     protected int bindLayoutID() {
         return R.layout.fragment_inbox;
@@ -61,6 +65,7 @@ public class InboxFragment extends BaseFragment {
             }
         });
         bar.showNotify();
+        setRefresh();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new InboxAdapter(mMessageLists);
         recyclerView.setAdapter(adapter);
@@ -78,7 +83,29 @@ public class InboxFragment extends BaseFragment {
         initData();
     }
 
-    // TODO: 2018/5/8 ������Ϣ�б���Ϣ
+    /**刷新界面信息*/
+    private void setRefresh() {
+        refreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        // 设置下拉进度的主题颜色
+        refreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
+        // 下拉时触发SwipeRefreshLayout的下拉动画，动画完毕之后就会回调这个方法
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        ToastUtils.showToast("Refresh the data");
+                        // 加载完数据设置为不刷新状态，将下拉进度收起来
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1200);
+            }
+        });
+    }
+
+    // TODO: 2018/5/8 请求消息列表信息
     protected void initData() {
         Call<MessageListBean> messageLists = RetrofitUtil.getAPIService().getMessageLists(1);
         messageLists.enqueue(new CustomerCallBack<MessageListBean>() {
@@ -88,9 +115,13 @@ public class InboxFragment extends BaseFragment {
                 List<MessageListBean.DataBean> data = messageListBean.getData();
                 if (data == null) {
                     adapter.notifyDataSetChanged();
+                    ToastUtils.showToast("No Data");
                 } else {
                     mMessageLists.addAll(data);
                     adapter.notifyDataSetChanged();
+                    for (int i = 0; i < data.size(); i++) {
+                        chatUserName.add(data.get(i).getUser());
+                    }
                 }
             }
             @Override

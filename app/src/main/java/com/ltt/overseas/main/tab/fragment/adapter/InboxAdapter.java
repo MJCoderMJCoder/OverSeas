@@ -31,7 +31,7 @@ public class InboxAdapter extends RecyclerAdapter {
 
     @Override
     public int getContentItemCount() {
-        return 6;
+        return mDataLists.size();
     }
 
     @Override
