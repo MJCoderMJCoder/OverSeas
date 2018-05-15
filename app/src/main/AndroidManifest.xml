@@ -99,6 +99,7 @@
             android:name=".main.tab.fragment.activity.MyRequestDetailActivity"
             android:theme="@style/Translucent"
             />
+        <activity android:name=".main.tab.fragment.activity.ChoosePreferenceActivity"></activity>
     </application>
 
 </manifest>

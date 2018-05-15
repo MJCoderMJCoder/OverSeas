@@ -1,22 +1,24 @@
 package com.ltt.overseas.main.tab.fragment.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseActivity;
 import com.ltt.overseas.core.ActionBar;
-import com.ltt.overseas.main.tab.fragment.ProfileFragment;
 import com.ltt.overseas.main.tab.fragment.fragment.PortfolloFragment;
 import com.ltt.overseas.main.tab.fragment.fragment.ReViewFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -32,6 +34,8 @@ public class ProfileActivity extends BaseActivity {
     TextView viewReview;
     @BindView(R.id.vp)
     ViewPager vp;
+    @BindView(R.id.iv_choose_preference)
+    ImageView ivChoosePreference;
 
     @Override
     protected int bindLayoutID() {
@@ -83,7 +87,7 @@ public class ProfileActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_notify,R.id.btn_recharge,R.id.iv_person_info, R.id.iv_content, R.id.view_portfollo, R.id.view_review})
+    @OnClick({R.id.iv_notify, R.id.btn_recharge, R.id.iv_person_info, R.id.iv_content, R.id.view_portfollo, R.id.view_review,R.id.iv_choose_preference})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_notify:
@@ -105,7 +109,21 @@ public class ProfileActivity extends BaseActivity {
                 changePos(1);
                 vp.setCurrentItem(0);
                 break;
+            case  R.id.iv_choose_preference:
+                startActivity(new Intent(this,ChoosePreferenceActivity.class));
+                break;
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick()
+    public void onClick() {
     }
 
     private static class GamePager extends FragmentPagerAdapter {

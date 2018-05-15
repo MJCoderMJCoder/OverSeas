@@ -308,6 +308,7 @@
                 android:background="@drawable/shape_add_card"
                 >
                 <ImageView
+                    android:id="@+id/iv_choose_preference"
                     android:layout_width="17dp"
                     android:layout_height="17dp"
                     android:layout_marginTop="@dimen/dp15"
@@ -367,7 +368,7 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
-                            android:text="MainTances"
+                            android:text="Maintenance"
                             android:textAllCaps="false"
                             android:layout_marginTop="@dimen/dp10"
                             android:layout_marginLeft="@dimen/dp7"
