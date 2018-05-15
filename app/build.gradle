@@ -26,7 +26,7 @@ android {
     signingConfigs {
         def alias = "overseas"
         def password = "123456"
-        def filePath = "G:/android_projects/mmm/OverSeas/overseas.jks"   //签名文件路径 如：../faceprint.jks
+        def filePath = "D:/Yunwen/project/OverSeas/overseas.jks"   //签名文件路径 如：../faceprint.jks
 
         debug {
             keyAlias alias

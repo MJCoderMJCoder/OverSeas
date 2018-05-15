@@ -6,6 +6,7 @@ import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.model.PhoneListBean;
+import com.ltt.overseas.model.PreferenceListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
 import com.ltt.overseas.model.SectionListBean;
@@ -81,5 +82,6 @@ public interface APIService {
     //    //
     //    @DELETE("address/{addressId}")
     //    Call<String> delAdddress(@Path("addressId") String addressId);
-
+    @GET("user/list_preference")
+    Call<PreferenceListBean> getPreferenceLists();
 }
