@@ -54,7 +54,6 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_tomessage:
-
                 Intent intent = new Intent(MyRequestDetailActivity.this, ChatsActivity.class);
                 //                intent.putExtra("username", dataBean.getUser());
                 //                intent.putExtra("request_category", dataBean.getRequest_category());
@@ -62,7 +61,6 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 startActivity(intent);
                 break;
             case R.id.tv_profile:
-
                 intent = new Intent(MyRequestDetailActivity.this, ProfileActivity.class);
                 //                intent.putExtra("username", dataBean.getUser());
                 //                intent.putExtra("request_category", dataBean.getRequest_category());

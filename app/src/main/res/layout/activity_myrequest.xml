@@ -545,11 +545,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <!-- <Button
-             android:id="@+id/btn_contact"
-             android:layout_width="wrap_content"
-             android:layout_height="38dp"
-             android:background="@mipmap/btn_task_contact"/>-->
         <TextView
             android:id="@+id/tv_tomessage"
             android:layout_width="0dp"
