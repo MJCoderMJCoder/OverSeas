@@ -92,6 +92,7 @@
             android:name=".main.tab.fragment.activity.NowPaymentActivity"
             android:theme="@style/Translucent"
             />
+        <activity android:name=".main.tab.fragment.activity.ExploreDetailActivity"></activity>
         <activity
             android:name=".main.tab.fragment.activity.ChatsActivity"
             android:theme="@style/Translucent"/>
