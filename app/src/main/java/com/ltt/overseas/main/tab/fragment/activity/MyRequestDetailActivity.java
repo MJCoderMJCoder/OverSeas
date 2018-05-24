@@ -3,13 +3,11 @@ package com.ltt.overseas.main.tab.fragment.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseActivity;
 import com.ltt.overseas.core.ActionBar;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -18,8 +16,8 @@ import butterknife.OnClick;
  */
 public class MyRequestDetailActivity extends BaseActivity implements View.OnClickListener {
     ActionBar bar;
-    @BindView(R.id.tv_tomessage)
-    TextView tvTomessage;
+    //    @BindView(R.id.tv_tomessage)
+    //    TextView tvTomessage;
 
     @Override
     protected int bindLayoutID() {
@@ -38,7 +36,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
         bar.setTitle("Enquiry");
         bar.showNotify();
 
-        tvTomessage.setOnClickListener(this);
+        //        tvTomessage.setOnClickListener(this);
     }
 
     @Override
@@ -50,18 +48,18 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
 
     }
 
-    @OnClick({R.id.tv_tomessage, R.id.tv_profile})
+    @OnClick({R.id.tv_profile}) //R.id.tv_tomessage,
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_tomessage:
-                Intent intent = new Intent(MyRequestDetailActivity.this, ChatsActivity.class);
-                //                intent.putExtra("username", dataBean.getUser());
-                //                intent.putExtra("request_category", dataBean.getRequest_category());
-                //                intent.putExtra("conversation_id", dataBean.getConversation_id());
-                startActivity(intent);
-                break;
+            //            case R.id.tv_tomessage:
+            //                Intent intent = new Intent(MyRequestDetailActivity.this, ChatsActivity.class);
+            //                //                intent.putExtra("username", dataBean.getUser());
+            //                //                intent.putExtra("request_category", dataBean.getRequest_category());
+            //                //                intent.putExtra("conversation_id", dataBean.getConversation_id());
+            //                startActivity(intent);
+            //                break;
             case R.id.tv_profile:
-                intent = new Intent(MyRequestDetailActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(MyRequestDetailActivity.this, ChatsActivity.class);
                 //                intent.putExtra("username", dataBean.getUser());
                 //                intent.putExtra("request_category", dataBean.getRequest_category());
                 //                intent.putExtra("conversation_id", dataBean.getConversation_id());

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
+import com.ltt.overseas.XApplication;
 import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.base.BaseFragment;
 import com.ltt.overseas.base.RecyclerAdapter;
@@ -24,13 +25,13 @@ import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.activity.MyRequestDetailActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
+import com.ltt.overseas.main.tab.fragment.activity.RechareActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.MyResponseAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.MyTaskAdapter;
 import com.ltt.overseas.model.RequestBean;
 import com.ltt.overseas.model.RequestListBean;
+import com.ltt.overseas.model.ResponseBean;
 import com.ltt.overseas.model.ResponseListBean;
-import com.ltt.overseas.model.TypeListBean;
-import com.ltt.overseas.model.UserBean;
 import com.ltt.overseas.utils.L;
 import com.ltt.overseas.utils.ToastUtils;
 
@@ -83,7 +84,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private MyTaskAdapter myTaskAdapter;
     ActionBar bar;
     private ArrayList<String> list = new ArrayList<String>();
-    private String authorization;
+    private String authorization = XApplication.globalUserBean.getAccess_token();
+    private final String TAG = "(╯‵□′)╯︵┻━┻ 走你！";
 
     @Override
     protected int bindLayoutID() {
@@ -104,15 +106,6 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        myResponseAdapter = new MyResponseAdapter();
-        recyclerView.setAdapter(myResponseAdapter);
-        myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Object object, View view, int position) {
-                //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
-                startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
-            }
-        });
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_text, getData());
         tvTitle.setText(list.get(0));
         listview.setAdapter(arrayAdapter);
@@ -134,11 +127,22 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
                     @Override
                     public void onResponseResult(ResponseListBean response) {
-                        L.v("LZF", response + "");
+                        L.v(TAG, response + "");
                         dismissLoadingView();
                         if (response.isStatus()) {
+                            myResponseAdapter = new MyResponseAdapter(response.getData());
+                            recyclerView.setAdapter(myResponseAdapter);
+                            myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(Object object, View view, int position) {
+                                    //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                                    startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
+                                }
+                            });
                         } else {
                             ToastUtils.showToast(response.getMsg());
+                            myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                            recyclerView.setAdapter(myResponseAdapter);
                         }
                     }
 
@@ -147,18 +151,13 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         dismissLoadingView();
                         if (errorMessage != null) {
                             ToastUtils.showToast(errorMessage.getMsg());
+                            myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                            recyclerView.setAdapter(myResponseAdapter);
                         } else {
                             ToastUtils.showToast("isNetError：" + isNetError);
+                            myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                            recyclerView.setAdapter(myResponseAdapter);
                         }
-                    }
-                });
-                myResponseAdapter = new MyResponseAdapter();
-                recyclerView.setAdapter(myResponseAdapter);
-                myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Object object, View view, int position) {
-                        //                        startActivity(new Intent(getActivity(), TaskDetailActivity.class));
-                        startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
                     }
                 });
                 break;
@@ -167,7 +166,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 requestListBeanCall.enqueue(new CustomerCallBack<RequestListBean>() {
                     @Override
                     public void onResponseResult(RequestListBean response) {
-                        L.v("LZF", response + "");
+                        L.v(TAG, response + "");
                         dismissLoadingView();
                         if (response.isStatus()) {
                             myTaskAdapter = new MyTaskAdapter(response.getData());
@@ -214,23 +213,17 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        refreshLayout.setRefreshing(false);
-        Call<TypeListBean> typeListBeanCall = RetrofitUtil.getAPIService().getTypeList();
-        typeListBeanCall.enqueue(new CustomerCallBack<TypeListBean>() {
-            @Override
-            public void onResponseResult(TypeListBean response) {
-                L.v("LZF", response + "");
-            }
-
-            @Override
-            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
-                L.v("LZF", errorMessage + "；" + isNetError);
-            }
-        });
+        if ("My Response".equals(tvTitle.getText().toString())) {
+            refreshLayout.setRefreshing(false);
+            listview.performItemClick(listview, 0, 0);
+        } else if ("My Task".equals(tvTitle.getText().toString())) {
+            refreshLayout.setRefreshing(false);
+            listview.performItemClick(listview, 1, 1);
+        }
     }
 
 
-    @OnClick({R.id.iv_menu, R.id.iv_left, R.id.iv_notify, R.id.ll_coins, R.id.btn_right})
+    @OnClick({R.id.iv_menu, R.id.iv_left, R.id.iv_notify, R.id.ll_coins, R.id.btn_right_coin})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_notify:
@@ -243,8 +236,10 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_coins:
-            case R.id.btn_right:
-                ToastUtils.showToast("test coins");
+                startActivity(new Intent(getActivity(), RechareActivity.class));
+                break;
+            case R.id.btn_right_coin:
+                startActivity(new Intent(getActivity(), RechareActivity.class));
                 break;
             default:
                 break;
@@ -256,7 +251,6 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         //        list.add("All My Task");
         //        list.add("Pin");
         list.add("My Response");
-        list.add("My Task");
         return list;
     }
 
@@ -266,22 +260,36 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
 
-        UserBean userParams = new UserBean();
-        userParams.setEmail("awesome@luqman.rocks");
-        userParams.setPassword("test123");
-        showLoadingView();
-        Call<UserBean> gsonUserBeanCall = RetrofitUtil.getAPIService().loginTest(userParams);
-        gsonUserBeanCall.enqueue(new CustomerCallBack<UserBean>() {
+        Call<ResponseListBean> responseListBeanCall = RetrofitUtil.getAPIService().getResponseList(1 + "", authorization);
+        responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
             @Override
-            public void onResponseResult(UserBean response) {
-                L.v("LZF", response + "");
-                authorization = "Bearer " + response.getAccess_token();
-                dismissLoadingView();
+            public void onResponseResult(ResponseListBean response) {
+                L.v(TAG, response + "");
+                if (response.isStatus()) {
+                    myResponseAdapter = new MyResponseAdapter(response.getData());
+                    recyclerView.setAdapter(myResponseAdapter);
+                    myResponseAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Object object, View view, int position) {
+                            //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+                            startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
+                        }
+                    });
+                } else {
+                    myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                    recyclerView.setAdapter(myResponseAdapter);
+                }
             }
 
             @Override
-            public void onResponseError(BaseBean errorMsg, boolean isNetError) {
-                L.v("LZF", errorMsg + "；" + isNetError);
+            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+                if (errorMessage != null) {
+                    myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                    recyclerView.setAdapter(myResponseAdapter);
+                } else {
+                    myResponseAdapter = new MyResponseAdapter(new ArrayList<ResponseBean>());
+                    recyclerView.setAdapter(myResponseAdapter);
+                }
             }
         });
         return rootView;
