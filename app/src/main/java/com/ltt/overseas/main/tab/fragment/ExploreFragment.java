@@ -25,6 +25,8 @@ import com.ltt.overseas.main.tab.fragment.adapter.ExploreAdapter;
 import com.ltt.overseas.model.ExploreQuestionBean;
 import com.ltt.overseas.model.ExploreQuestionListBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
+import com.ltt.overseas.model.List_request_centerDataBean;
+import com.ltt.overseas.model.List_request_centreBean;
 import com.ltt.overseas.model.SectionBean;
 
 import butterknife.BindView;
@@ -66,15 +68,12 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
         adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
+                adapter.setSelected(position);
                 Intent intent = new Intent(getContext(), ExploreDetailActivity.class);
-              //  intent.putExtra("sectionid",((SectionBean)object).getSection_id());
+                intent.putExtra("requestid", ((List_request_centreBean )object).getRequest_id());
                 startActivity(intent);
             }
         });
-        ExploreQuestionListBean collection=new ExploreQuestionListBean();
-        collection.setQuestion_answer("测试");
-        collection.setQuestion_title("测试");
-        adapter.add(collection);
 
     }
 
@@ -97,12 +96,12 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
     }
     private void getQuestionList() {
         showLoadingView();
-        Call<ExploreResponseDataBean> call = RetrofitUtil.getAPIService().getQuestions("2");
-        call.enqueue(new CustomerCallBack<ExploreResponseDataBean>() {
+        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentre();
+        call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
             @Override
-            public void onResponseResult(ExploreResponseDataBean response) {
+            public void onResponseResult(List_request_centerDataBean response) {
                 dismissLoadingView();
-                adapter.addAll(response.getData().get(0).getQuestions());
+                adapter.addAll(response.getData());
 
             }
 

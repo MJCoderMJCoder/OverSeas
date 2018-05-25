@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg3_introduce"
     android:orientation="vertical">
     <include layout="@layout/action_bar" />
     <RelativeLayout
@@ -43,9 +42,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task List"
+            android:text="Request Centre"
             android:textSize="@dimen/dp15"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginLeft="63dp"
             />

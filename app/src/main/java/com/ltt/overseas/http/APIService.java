@@ -3,6 +3,7 @@ package com.ltt.overseas.http;
 import com.ltt.overseas.model.ExploreQuestionBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
+import com.ltt.overseas.model.List_request_centerDataBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.model.PhoneListBean;
@@ -51,6 +52,9 @@ public interface APIService {
     //GET List all type
     @GET("service/main/list_type")
     Call<TypeListBean> getTypeList();
+
+    @GET("service/main/list_request_center")
+    Call<List_request_centerDataBean> getListRequestCentre();
 
     //Get Country id
     @GET("service/main/list_section/{type_id}")

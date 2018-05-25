@@ -13,6 +13,7 @@ import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.model.ExploreQuestionBean;
 import com.ltt.overseas.model.ExploreQuestionListBean;
 import com.ltt.overseas.model.ListQuestionBean;
+import com.ltt.overseas.model.List_request_centreBean;
 import com.ltt.overseas.model.TypeBean;
 
 import java.util.ArrayList;
@@ -27,6 +28,11 @@ import butterknife.ButterKnife;
  */
 public class ExploreAdapter extends RecyclerAdapter {
     private List<Object> list = new ArrayList<>();
+    int selected=-1;
+    public void setSelected(int selected){
+        this.selected=selected;
+        notifyDataSetChanged();
+    }
     @Override
     public RecyclerView.ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
         if(viewType!=3)
@@ -42,7 +48,7 @@ public class ExploreAdapter extends RecyclerAdapter {
         list.addAll(collection);
         notifyDataSetChanged();
     }
-    public void add( ExploreQuestionListBean collection) {
+    public void add( List_request_centreBean collection) {
         list.add(collection);
         notifyDataSetChanged();
     }
@@ -58,24 +64,34 @@ public class ExploreAdapter extends RecyclerAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final ExploreQuestionListBean data = (ExploreQuestionListBean)(list.get(position));
-        ((ExploreAdapter.Holder) holder).tvName.setText(data.getQuestion_title());
+        final List_request_centreBean data = (List_request_centreBean)(list.get(position));
+        ((ExploreAdapter.Holder) holder).tvName.setText(data.getRequest_title());
+        ((Holder) holder).tvUsername.setText(data.getRequester_name());
+        ((Holder) holder).tvTime.setText(data.getDate_created());
+        if (selected == position){
+            ((Holder) holder).rl2.setBackgroundResource(R.mipmap.bg_item_explore_black);
+        }
+        else
+            ((Holder) holder).rl2.setBackgroundResource(R.mipmap.bg_item_explore);
     }
 
     public class Holder extends RecyclerHolder {
 
-        @BindView(R.id.rl_1)
-        RelativeLayout rl1;
+//        @BindView(R.id.rl_1)
+//        RelativeLayout rl1;
         @BindView(R.id.rl_2)
         LinearLayout rl2;
-        @BindView(R.id.rl_3)
-        LinearLayout rl3;
+//        @BindView(R.id.rl_3)
+//        LinearLayout rl3;
 
         public Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
         }
+        TextView tvUsername = (TextView) itemView.findViewById(R.id.tv_username);
+        TextView tvTime = (TextView) itemView.findViewById(R.id.tv_time);
         TextView tvName = (TextView) itemView.findViewById(R.id.explore_item_title);
+
     }
 }
