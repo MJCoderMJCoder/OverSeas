@@ -28,8 +28,6 @@ import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
 import com.ltt.overseas.main.tab.fragment.activity.RechareActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.MyResponseAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.MyTaskAdapter;
-import com.ltt.overseas.model.RequestBean;
-import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseBean;
 import com.ltt.overseas.model.ResponseListBean;
 import com.ltt.overseas.utils.L;
@@ -126,7 +124,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 Call<ResponseListBean> responseListBeanCall = RetrofitUtil.getAPIService().getResponseList(1 + "", authorization);
                 responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
                     @Override
-                    public void onResponseResult(ResponseListBean response) {
+                    public void onResponseResult(final ResponseListBean response) {
                         L.v(TAG, response + "");
                         dismissLoadingView();
                         if (response.isStatus()) {
@@ -136,7 +134,14 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                                 @Override
                                 public void onItemClick(Object object, View view, int position) {
                                     //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
-                                    startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
+                                    Intent intent = new Intent(getActivity(), MyRequestDetailActivity.class);
+                                    ResponseBean responseBean = response.getData().get(position);
+                                    intent.putExtra("request_id", responseBean.getRequest_id());
+                                    intent.putExtra("conversation_id", responseBean.getConversation_id());
+                                    intent.putExtra("response_name", responseBean.getResponse_name());
+                                    intent.putExtra("user", responseBean.getUser());
+                                    intent.putExtra("date_created", responseBean.getDate_created());
+                                    startActivity(intent);
                                 }
                             });
                         } else {
@@ -161,45 +166,45 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                     }
                 });
                 break;
-            case 1:
-                Call<RequestListBean> requestListBeanCall = RetrofitUtil.getAPIService().getRequestList(1 + "", authorization);
-                requestListBeanCall.enqueue(new CustomerCallBack<RequestListBean>() {
-                    @Override
-                    public void onResponseResult(RequestListBean response) {
-                        L.v(TAG, response + "");
-                        dismissLoadingView();
-                        if (response.isStatus()) {
-                            myTaskAdapter = new MyTaskAdapter(response.getData());
-                            recyclerView.setAdapter(myTaskAdapter);
-                            myTaskAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(Object object, View view, int position) {
-                                    //                                    startActivity(new Intent(getActivity(), TaskDetailActivity.class));
-                                    startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
-                                }
-                            });
-                        } else {
-                            ToastUtils.showToast(response.getMsg());
-                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
-                            recyclerView.setAdapter(myTaskAdapter);
-                        }
-                    }
-
-                    @Override
-                    public void onResponseError(BaseBean errorMessage, boolean isNetError) {
-                        dismissLoadingView();
-                        if (errorMessage != null) {
-                            ToastUtils.showToast(errorMessage.getMsg());
-                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
-                            recyclerView.setAdapter(myTaskAdapter);
-                        } else {
-                            ToastUtils.showToast("isNetError：" + isNetError);
-                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
-                            recyclerView.setAdapter(myTaskAdapter);
-                        }
-                    }
-                });
-                break;
+            //            case 1:
+            //                Call<RequestListBean> requestListBeanCall = RetrofitUtil.getAPIService().getRequestList(1 + "", authorization);
+            //                requestListBeanCall.enqueue(new CustomerCallBack<RequestListBean>() {
+            //                    @Override
+            //                    public void onResponseResult(RequestListBean response) {
+            //                        L.v(TAG, response + "");
+            //                        dismissLoadingView();
+            //                        if (response.isStatus()) {
+            //                            myTaskAdapter = new MyTaskAdapter(response.getData());
+            //                            recyclerView.setAdapter(myTaskAdapter);
+            //                            myTaskAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+            //                                @Override
+            //                                public void onItemClick(Object object, View view, int position) {
+            //                                    //                                    startActivity(new Intent(getActivity(), TaskDetailActivity.class));
+            //                                    startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
+            //                                }
+            //                            });
+            //                        } else {
+            //                            ToastUtils.showToast(response.getMsg());
+            //                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
+            //                            recyclerView.setAdapter(myTaskAdapter);
+            //                        }
+            //                    }
+            //
+            //                    @Override
+            //                    public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+            //                        dismissLoadingView();
+            //                        if (errorMessage != null) {
+            //                            ToastUtils.showToast(errorMessage.getMsg());
+            //                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
+            //                            recyclerView.setAdapter(myTaskAdapter);
+            //                        } else {
+            //                            ToastUtils.showToast("isNetError：" + isNetError);
+            //                            myTaskAdapter = new MyTaskAdapter(new ArrayList<RequestBean>());
+            //                            recyclerView.setAdapter(myTaskAdapter);
+            //                        }
+            //                    }
+            //                });
+            //                break;
             //            case 2:
             //                taskUnlockedadapter = new TaskUnlockedAdapter();
             //                recyclerView.setAdapter(taskUnlockedadapter);
@@ -208,6 +213,8 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             //                finishedAdapter = new TaskFinishedAdapter();
             //                recyclerView.setAdapter(finishedAdapter);
             //                break;
+            default:
+                break;
         }
     }
 
@@ -216,10 +223,10 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         if ("My Response".equals(tvTitle.getText().toString())) {
             refreshLayout.setRefreshing(false);
             listview.performItemClick(listview, 0, 0);
-        } else if ("My Task".equals(tvTitle.getText().toString())) {
+        } /*else if ("My Task".equals(tvTitle.getText().toString())) {
             refreshLayout.setRefreshing(false);
             listview.performItemClick(listview, 1, 1);
-        }
+        }*/
     }
 
 
@@ -263,7 +270,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         Call<ResponseListBean> responseListBeanCall = RetrofitUtil.getAPIService().getResponseList(1 + "", authorization);
         responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
             @Override
-            public void onResponseResult(ResponseListBean response) {
+            public void onResponseResult(final ResponseListBean response) {
                 L.v(TAG, response + "");
                 if (response.isStatus()) {
                     myResponseAdapter = new MyResponseAdapter(response.getData());
@@ -272,7 +279,9 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         @Override
                         public void onItemClick(Object object, View view, int position) {
                             //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
-                            startActivity(new Intent(getActivity(), MyRequestDetailActivity.class));
+                            Intent intent = new Intent(getActivity(), MyRequestDetailActivity.class);
+                            intent.putExtra("request_id", response.getData().get(position).getRequest_id());
+                            startActivity(intent);
                         }
                     });
                 } else {
