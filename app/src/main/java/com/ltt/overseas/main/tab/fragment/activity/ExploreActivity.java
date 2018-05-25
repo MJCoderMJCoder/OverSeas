@@ -55,7 +55,7 @@ public class ExploreActivity extends BaseActivity {
     @Override
     protected void prepareActivity() {
         bar=ActionBar.init(this);
-        bar.setTitle("Explore");
+        bar.setTitle("Request Centre");
         bar.setLeft(R.mipmap.back, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

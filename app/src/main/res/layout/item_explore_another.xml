@@ -22,7 +22,7 @@
             android:layout_height="50dp"
             android:layout_below="@+id/image"
             android:layout_marginLeft="45dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
     </RelativeLayout>
 
     <LinearLayout
