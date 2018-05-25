@@ -1,11 +1,11 @@
 package com.ltt.overseas.http;
 
-import com.ltt.overseas.model.ExploreQuestionBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.List_request_centerDataBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
+import com.ltt.overseas.model.MyRequestDetailListBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.PreferenceListBean;
 import com.ltt.overseas.model.RequestListBean;
@@ -70,6 +70,9 @@ public interface APIService {
 
     @GET("service/user/request")
     Call<RequestListBean> getRequestList(@Query("page") String page, @Header("Authorization") String authorization);
+
+    @GET("service/main/view_request/{section_id}")
+    Call<MyRequestDetailListBean> getRequestDetail(@Path("section_id") String sectionId);
 
     //Login
     @POST("auth/login")
