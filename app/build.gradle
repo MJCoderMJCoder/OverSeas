@@ -23,24 +23,24 @@ android {
         }
     }
 
-    signingConfigs {
-        def alias = "overseas"
-        def password = "123456"
-        def filePath = "E:/Android/workspace/OverSeas/overseas.jks"   //签名文件路径 如：../faceprint.jks
-
-        debug {
-            keyAlias alias
-            keyPassword password
-            storeFile file(filePath)
-            storePassword(password)
-        }
-        release {
-            keyAlias alias
-            keyPassword password
-            storeFile file(filePath)
-            storePassword(password)
-        }
-    }
+//    signingConfigs {
+//        def alias = "overseas"
+//        def password = "123456"
+//        def filePath = "E:/Android/workspace/OverSeas/overseas.jks"   //签名文件路径 如：../faceprint.jks
+//
+//        debug {
+//            keyAlias alias
+//            keyPassword password
+//            storeFile file(filePath)
+//            storePassword(password)
+//        }
+//        release {
+//            keyAlias alias
+//            keyPassword password
+//            storeFile file(filePath)
+//            storePassword(password)
+//        }
+//    }
     buildToolsVersion '26.0.2'
 }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ExploreResponseDataBean extends BaseBean {
 
-    private List<ExploreQuestionBean> data;
-    public List<ExploreQuestionBean> getData(){return data;}
-    public void setData(List<ExploreQuestionBean> data){this.data=data;}
+    private List<ExploreQuestionListBean> data;
+    public List<ExploreQuestionListBean> getData(){return data;}
+    public void setData(List<ExploreQuestionListBean> data){this.data=data;}
 }

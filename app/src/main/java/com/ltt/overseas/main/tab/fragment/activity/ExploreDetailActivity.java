@@ -74,7 +74,7 @@ public class ExploreDetailActivity extends BaseActivity {
             @Override
             public void onResponseResult(ExploreResponseDataBean response) {
                 dismissLoadingView();
-                for  (ExploreQuestionListBean reqeustData:response.getData().get(0).getQuestions()){
+                for  (ExploreQuestionListBean reqeustData:response.getData()){
                     View requestView =  mlflater.inflate(R.layout.detailrequestlayout,null);
                     TextView requestTittle=requestView.findViewById(R.id.tv_requestittle);
                     requestTittle.setText(reqeustData.getQuestion_title());

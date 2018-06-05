@@ -61,8 +61,8 @@ public interface APIService {
     Call<SectionListBean> getSectionList(@Path("type_id") String typeId);
 
     //Get Country id
-    @GET("service/main/view_request/{section_id}")
-    Call<ExploreResponseDataBean> getQuestions(@Path("section_id") String sectionId);
+    @GET("service/main/view_request/{request_id}")
+    Call<ExploreResponseDataBean> getQuestions(@Path("request_id") String sectionId);
 
 
     @GET("service/service_provider/response/list_response")
