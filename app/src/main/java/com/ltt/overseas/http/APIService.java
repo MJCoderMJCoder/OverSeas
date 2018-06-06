@@ -1,5 +1,7 @@
 package com.ltt.overseas.http;
 
+import com.ltt.overseas.model.CreateResponseBean;
+import com.ltt.overseas.model.CreateResponseBodyBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.List_request_centerDataBean;
@@ -67,6 +69,12 @@ public interface APIService {
 
     @GET("service/service_provider/response/list_response")
     Call<ResponseListBean> getResponseList(@Query("page") String page, @Header("Authorization") String authorization);
+
+    @GET("service/service_provider/response/list_response?{request_id}&page=1")
+    Call<ResponseListBean> getResponseDetail(@Query("page") String request_id, @Header("Authorization") String authorization);
+
+    @POST("service/service_provider/response/create")
+    Call<CreateResponseBean> postCreateResponse(@Body CreateResponseBodyBean responseParams, @Header("Authorization") String authorization);
 
     @GET("service/user/request")
     Call<RequestListBean> getRequestList(@Query("page") String page, @Header("Authorization") String authorization);

@@ -71,6 +71,7 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
                 adapter.setSelected(position);
                 Intent intent = new Intent(getContext(), ExploreDetailActivity.class);
                 intent.putExtra("requestid", ((List_request_centreBean )object).getRequest_id());
+                intent.putExtra("show_button_response", ((List_request_centreBean )object).getShow_button_response());
                 startActivity(intent);
             }
         });
