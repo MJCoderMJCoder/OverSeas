@@ -39,7 +39,7 @@ public class TypeListAdapter extends RecyclerAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
-        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_item, parent, false));
+        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_parentitem, parent, false));
     }
 
     @Override

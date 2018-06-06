@@ -65,6 +65,7 @@ public class ExploreDetailActivity extends BaseActivity {
         }
         getRequestList();
 
+
     }
     @OnClick({R.id.iv_notify,R.id.btn_Response})
     public void onClick(View view) {
@@ -113,7 +114,7 @@ public class ExploreDetailActivity extends BaseActivity {
                     requestAnswer.setText(reqeustData.getQuestion_answer());
                     lyRequestList.addView(requestView);
                 }
-                
+
             }
 
             @Override

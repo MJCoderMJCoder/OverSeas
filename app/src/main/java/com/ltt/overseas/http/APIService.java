@@ -58,6 +58,8 @@ public interface APIService {
     @GET("service/main/list_request_center")
     Call<List_request_centerDataBean> getListRequestCentre();
 
+    @GET("service/main/list_request_center?sort=older")
+    Call<List_request_centerDataBean> getListRequestCentrebysection(@Query("section_id") String section_id);
     //Get Country id
     @GET("service/main/list_section/{type_id}")
     Call<SectionListBean> getSectionList(@Path("type_id") String typeId);

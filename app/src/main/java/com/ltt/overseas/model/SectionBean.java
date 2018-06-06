@@ -9,6 +9,7 @@ public class SectionBean extends BaseBean {
     private String page_title;
     private String content;
 
+
     public String getSection_name() {
         return section_name;
     }

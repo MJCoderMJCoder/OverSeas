@@ -1,7 +1,11 @@
 package com.ltt.overseas.main.tab.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -49,7 +53,7 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
 
     private ExploreAdapter adapter;
     ActionBar bar;
-
+    private String mSectionList="";
     @Override
     protected int bindLayoutID() {
         return R.layout.fragment_explore;
@@ -63,8 +67,7 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ExploreAdapter();
-        getQuestionList();
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);String sectionlist;
         adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
@@ -75,9 +78,25 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
                 startActivity(intent);
             }
         });
+       broadRecieve();
 
     }
+private void broadRecieve(){
+    LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+    IntentFilter intentFilter = new IntentFilter();
+    intentFilter.addAction("tellexfragment");
+    BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mSectionList = intent.getStringExtra("sectionlist");
+            getQuestionList();
+        }
 
+    };
+    localBroadcastManager.registerReceiver(br, intentFilter);
+    if (mSectionList.isEmpty())
+        getQuestionList();
+}
     @OnClick({R.id.iv_menu, R.id.iv_notify})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -97,7 +116,7 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
     }
     private void getQuestionList() {
         showLoadingView();
-        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentre();
+        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentrebysection(mSectionList);
         call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
             @Override
             public void onResponseResult(List_request_centerDataBean response) {
@@ -113,5 +132,6 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
 
         });
     }
+ 
 
 }
