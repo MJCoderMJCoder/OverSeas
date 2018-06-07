@@ -13,7 +13,7 @@ import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.adapter.ReusableAdapter;
-import com.ltt.overseas.model.ExploreQuestionListBean;
+import com.ltt.overseas.model.MyRequestDetail;
 import com.ltt.overseas.model.MyRequestDetailListBean;
 import com.ltt.overseas.utils.L;
 import com.ltt.overseas.utils.ToastUtils;
@@ -83,11 +83,11 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 public void onResponseResult(MyRequestDetailListBean response) {
                     L.v(TAG, response + "");
                     if (response.isStatus()) {
-                        listView.setAdapter(new ReusableAdapter<ExploreQuestionListBean>(response.getData().getQuestions(), R.layout.item_my_request_detail_layout) {
+                        listView.setAdapter(new ReusableAdapter<MyRequestDetail>(response.getData(), R.layout.item_my_request_detail_layout) {
                             @Override
-                            public void bindView(ViewHolder holder, ExploreQuestionListBean obj) {
+                            public void bindView(ViewHolder holder, MyRequestDetail obj) {
                                 holder.setText(R.id.question_title, obj.getQuestion_title());
-                                holder.setText(R.id.question_answer, obj.getQuestion_answer());
+                                holder.setText(R.id.question_answer, obj.getQuestion_answer().get(0));
                             }
                         });
                     } else {
