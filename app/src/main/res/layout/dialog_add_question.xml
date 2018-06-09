@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/shape_add_card"
+    >
+
+    <TextView
+        android:id="@+id/tv_info_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/civ_avatar"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/dp15"
+        android:textColor="@color/black"
+        android:text="You can ask the requester additional question or skip to notify requester that you are interest"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_info_one">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/iv_add_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/rv_question"
+        android:src="@mipmap/iv_add"/>
+
+    <TextView
+        android:id="@+id/btn_skip"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_above="@+id/btn_submit"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="Skip"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Submit"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_add_card"
+        />
+
+</RelativeLayout>
+
+
