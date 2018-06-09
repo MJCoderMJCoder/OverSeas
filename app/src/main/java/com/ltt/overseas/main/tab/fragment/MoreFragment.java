@@ -1,21 +1,28 @@
 package com.ltt.overseas.main.tab.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseFragment;
 import com.ltt.overseas.core.ActionBar;
+import com.ltt.overseas.main.tab.fragment.activity.ChangePassWordActivity;
+import com.ltt.overseas.main.tab.fragment.activity.CompanyProfileActivity;
 import com.ltt.overseas.main.tab.fragment.activity.HelpActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
-import com.ltt.overseas.main.tab.fragment.activity.ProfileActivity;
 import com.ltt.overseas.main.tab.fragment.activity.ProfileNewActivity;
 import com.ltt.overseas.main.tab.fragment.activity.SettingNotificationActivity;
 import com.ltt.overseas.main.tab.fragment.dialog.ChooseRegionDialog;
 import com.ltt.overseas.main.tab.fragment.dialog.FeedBackDialog;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by Administrator on 2018/1/18.
@@ -24,6 +31,9 @@ public class MoreFragment extends BaseFragment {
     @BindView(R.id.action_bar)
     View actionBar;
     ActionBar bar;
+    @BindView(R.id.rl_profile)
+    RelativeLayout rlProfile;
+    Unbinder unbinder;
 
     @Override
     protected int bindLayoutID() {
@@ -50,22 +60,23 @@ public class MoreFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), NotificationActivity.class));
                 break;
             case R.id.tv_my_profile:
-                startActivity(new Intent(getActivity(), ProfileNewActivity.class));
+                startActivity(new Intent(getActivity(), CompanyProfileActivity.class));
                 break;
             case R.id.tv_notification_set:
                 startActivity(new Intent(getActivity(), SettingNotificationActivity.class));
                 break;
             case R.id.tv_set_language:
-                ChooseRegionDialog dialog1=new ChooseRegionDialog(getActivity(),R.style.Prompt_dialog,0.9,0.7);
+                ChooseRegionDialog dialog1 = new ChooseRegionDialog(getActivity(), R.style.Prompt_dialog, 0.9, 0.7);
                 dialog1.show();
                 break;
             case R.id.tv_help:
                 startActivity(new Intent(getActivity(), HelpActivity.class));
                 break;
             case R.id.tv_support:
+                startActivity(new Intent(getActivity(), ChangePassWordActivity.class));
                 break;
             case R.id.tv_feedback:
-                FeedBackDialog dialog=new FeedBackDialog(getActivity(),R.style.Prompt_dialog,0.9,0.7);
+                FeedBackDialog dialog = new FeedBackDialog(getActivity(), R.style.Prompt_dialog, 0.9, 0.7);
                 dialog.show();
                 break;
             case R.id.tv_terms:
@@ -75,5 +86,24 @@ public class MoreFragment extends BaseFragment {
             case R.id.tv_version:
                 break;
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.rl_profile)
+    public void onClick() {
+        startActivity(new Intent(getActivity(), ProfileNewActivity.class));
     }
 }

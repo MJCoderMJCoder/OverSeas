@@ -16,6 +16,13 @@
             android:layout_margin="5dp"
             android:background="@drawable/shape_popup_bg"
             android:hint="Input content"/>
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_popup_bg"
+            android:hint="Input content"/>
 
         <Button
             android:id="@+id/bt_submit"
@@ -26,7 +33,7 @@
             android:background="@drawable/bg_shape_selected"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:text="sumbit"/>
+            android:text="submit"/>
 
     </RelativeLayout>
 </LinearLayout>

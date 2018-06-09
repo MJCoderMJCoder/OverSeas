@@ -1,18 +1,22 @@
 package com.ltt.overseas.http;
 
 import com.ltt.overseas.base.BaseBean;
+import com.ltt.overseas.model.CompanyBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.List_request_centerDataBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.model.MyRequestDetailListBean;
+import com.ltt.overseas.model.PWBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.PreferenceListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
 import com.ltt.overseas.model.SectionListBean;
 import com.ltt.overseas.model.TypeListBean;
+import com.ltt.overseas.model.UpdateCompany;
+import com.ltt.overseas.model.UpdatePWBean;
 import com.ltt.overseas.model.UserBean;
 import com.ltt.overseas.model.UserProfileBean;
 import com.ltt.overseas.model.ViewRequestBean;
@@ -98,9 +102,14 @@ public interface APIService {
     @GET("user/list_preference")
     Call<PreferenceListBean> getPreferenceLists();
 
+    @POST("user/change_password")
+    Call<UpdatePWBean> updatePW(@Body PWBean pwParams);
 
     @GET("user")
     Call<UserProfileBean> getUserProfileLists();
+
+    @POST("user/update_company")
+    Call<UpdateCompany> updateCompany(@Body CompanyBean companyParams);
 
     @POST("user/update_profile")
     Call<BaseBean> updateUserProfileLists(@Body updateUserBean userParams);
