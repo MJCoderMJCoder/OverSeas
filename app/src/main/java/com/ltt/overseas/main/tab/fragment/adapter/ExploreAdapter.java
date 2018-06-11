@@ -45,6 +45,7 @@ public class ExploreAdapter extends RecyclerAdapter {
         if (collection == null) {
             return;
         }
+        list.clear();
         list.addAll(collection);
         notifyDataSetChanged();
     }

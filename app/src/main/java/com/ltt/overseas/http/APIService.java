@@ -1,7 +1,8 @@
 package com.ltt.overseas.http;
-
 import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.model.CompanyBean;
+import com.ltt.overseas.model.CreateResponseBean;
+import com.ltt.overseas.model.CreateResponseBodyBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
 import com.ltt.overseas.model.GsonUserBean;
 import com.ltt.overseas.model.List_request_centerDataBean;
@@ -64,19 +65,27 @@ public interface APIService {
     @GET("service/main/list_request_center")
     Call<List_request_centerDataBean> getListRequestCentre();
 
+    @GET("service/main/list_request_center?sort=older")
+    Call<List_request_centerDataBean> getListRequestCentrebysection(@Query("section_id") String section_id);
     //Get Country id
     @GET("service/main/list_section/{type_id}")
     Call<SectionListBean> getSectionList(@Path("type_id") String typeId);
 
     //Get Country id
-    @GET("service/main/view_request/{section_id}")
-    Call<ExploreResponseDataBean> getQuestions(@Path("section_id") String sectionId);
+    @GET("service/main/view_request/{request_id}")
+    Call<ExploreResponseDataBean> getQuestions(@Path("request_id") String sectionId);
 
     @GET("service/main/view_request/{section_id}")
     Call<ViewRequestBean> getQuestionss(@Path("section_id") String sectionId);
 
     @GET("service/service_provider/response/list_response")
     Call<ResponseListBean> getResponseList(@Query("page") String page, @Header("Authorization") String authorization);
+
+    @GET("service/service_provider/response/list_response?{request_id}&page=1")
+    Call<ResponseListBean> getResponseDetail(@Query("page") String request_id, @Header("Authorization") String authorization);
+
+    @POST("service/service_provider/response/create")
+    Call<CreateResponseBean> postCreateResponse(@Body CreateResponseBodyBean responseParams, @Header("Authorization") String authorization);
 
     @GET("service/user/request")
     Call<RequestListBean> getRequestList(@Query("page") String page, @Header("Authorization") String authorization);

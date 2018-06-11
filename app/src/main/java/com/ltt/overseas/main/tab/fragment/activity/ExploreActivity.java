@@ -1,10 +1,16 @@
 package com.ltt.overseas.main.tab.fragment.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.ltt.overseas.R;
@@ -14,6 +20,7 @@ import com.ltt.overseas.base.RecyclerAdapter;
 import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
+import com.ltt.overseas.main.tab.fragment.ExploreFragment;
 import com.ltt.overseas.main.tab.fragment.adapter.PopupAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.SectionListAdapter;
 import com.ltt.overseas.main.tab.fragment.adapter.TypeListAdapter;
@@ -28,6 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 
 /**
@@ -38,13 +46,15 @@ public class ExploreActivity extends BaseActivity {
     RecyclerView parentLv;
     @BindView(R.id.child_lv)
     RecyclerView childLv;
+    @BindView(R.id.btn_search)
+    Button btn_search;
     ActionBar bar;
     private TypeListAdapter parentAdapter;
     private SectionListAdapter childAdapter;
     private List<String> parentList;
     private List<List<String>> chlidList;
     private List<String> childValues;
-
+    public final int REPLY_TYPE=1;
     private TypeBean mTypeBean;
 
     @Override
@@ -69,15 +79,17 @@ public class ExploreActivity extends BaseActivity {
             @Override
             public void onItemClick(Object object, View view, int position) {
                 if (!mTypeBean.getType_id().equals(((TypeBean) object).getType_id())){
+                    mTypeBean =(TypeBean) object;
                     getSectionList();
                 }
             }
         });
         childAdapter = new SectionListAdapter(this, R.drawable.normal, R.drawable.press);
+        childAdapter.setBtn_search(btn_search);
         childAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-            finish();
+               int   a=position;
             }
         });
         LinearLayoutManager parentManager = new LinearLayoutManager(this );
@@ -86,6 +98,8 @@ public class ExploreActivity extends BaseActivity {
         LinearLayoutManager childManager = new LinearLayoutManager(this );
         childLv.setLayoutManager(childManager);
         childLv.setAdapter(childAdapter);
+        btn_search.setVisibility(View.GONE);
+
     }
 
     public void initData(){
@@ -126,5 +140,19 @@ public class ExploreActivity extends BaseActivity {
             }
         });
     }
+    @OnClick({R.id.btn_search})
+    public void onClick(View v){
+        switch (v.getId()) {
+            case R.id.btn_search:
+                Intent intent = new Intent("tellexfragment");
+                intent.putExtra("sectionlist", childAdapter.getSectionList());
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                finish();
+                break;
+
+        }
+    }
+
+
 
 }
