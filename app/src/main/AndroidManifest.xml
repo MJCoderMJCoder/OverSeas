@@ -104,6 +104,7 @@
 
         <activity android:name=".main.tab.fragment.activity.ProfileNewActivity"
                   android:theme="@style/Translucent"/>
+        <activity android:name=".main.tab.fragment.activity.CompanyProfileActivity"></activity>
     </application>
 
 </manifest>

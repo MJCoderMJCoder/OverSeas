@@ -76,7 +76,9 @@ public class ProfileNewActivity extends BaseActivity {
     TextView tvContactchange;
     @BindView(R.id.iv_contactchange)
     ImageView ivContactchange;
-//    @BindView(R.id.btn_left_profile)
+    @BindView(R.id.iv_changepw)
+    ImageView ivChangepw;
+    //    @BindView(R.id.btn_left_profile)
 //    ImageView btnLeftProfile;
 //    @BindView(R.id.tv_title)
 //    TextView tvTitle;
@@ -116,6 +118,7 @@ public class ProfileNewActivity extends BaseActivity {
                     ivStatechange.setVisibility(View.VISIBLE);
                     ivPochangechange.setVisibility(View.VISIBLE);
                     ivContactchange.setVisibility(View.VISIBLE);
+                    ivChangepw.setVisibility(View.VISIBLE);
                 } else {
                     isshowchanger = !isshowchanger;
                     ivFirstnamechange.setVisibility(View.INVISIBLE);
@@ -125,6 +128,7 @@ public class ProfileNewActivity extends BaseActivity {
                     ivStatechange.setVisibility(View.INVISIBLE);
                     ivPochangechange.setVisibility(View.INVISIBLE);
                     ivContactchange.setVisibility(View.INVISIBLE);
+                    ivChangepw.setVisibility(View.INVISIBLE);
                 }
 
 
@@ -166,7 +170,7 @@ public class ProfileNewActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({ R.id.iv_firstnamechange, R.id.iv_lastnamechange, R.id.iv_emailchange, R.id.iv_addresschange, R.id.iv_statechange, R.id.iv_pochangechange, R.id.iv_contactchange})
+    @OnClick({R.id.iv_changepw,R.id.iv_firstnamechange, R.id.iv_lastnamechange, R.id.iv_emailchange, R.id.iv_addresschange, R.id.iv_statechange, R.id.iv_pochangechange, R.id.iv_contactchange})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_firstnamechange:
@@ -190,6 +194,9 @@ public class ProfileNewActivity extends BaseActivity {
             case R.id.iv_contactchange:
                 updateUserCon("phone");
                 break;
+            case R.id.iv_changepw:
+                updateUserCon("all");
+                break;
         }
     }
 
@@ -199,13 +206,13 @@ public class ProfileNewActivity extends BaseActivity {
 
             view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
             final EditText et_con = view.findViewById(R.id.et_con);
-            Button bt_submit =  view.findViewById(R.id.bt_submit);
+            Button bt_submit = view.findViewById(R.id.bt_submit);
 
             bt_submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     upCon = et_con.getText().toString();
-                    update_change(con,upCon);
+                    update_change(con, upCon);
                     et_con.setText("");
                 }
             });
@@ -222,11 +229,11 @@ public class ProfileNewActivity extends BaseActivity {
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         // 显示的位置为:屏幕的宽度的一半-PopupWindow的高度的一半
-        int xPos = windowManager.getDefaultDisplay().getWidth()/2
-                - popupWindow.getWidth()/2;
+        int xPos = windowManager.getDefaultDisplay().getWidth() / 2
+                - popupWindow.getWidth() / 2;
         Log.i("coder", "xPos:" + xPos);
 
-        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0,0);
+        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
     }
 
     private void update_change(String con, String upCon) {
@@ -272,13 +279,23 @@ public class ProfileNewActivity extends BaseActivity {
             userParams.setPostcode(tvPostcodechange.getText().toString());
         }
 
+        if (con.equals("all")) {
+            userParams.setFirstname(tvFirstnamechange.getText().toString());
+            userParams.setLastname(tvLastnamechange.getText().toString());
+            userParams.setPostcode(tvPostcodechange.getText().toString());
+            userParams.setPhone(tvContactchange.getText().toString());
+            userParams.setState(tvStatechange.getText().toString());
+            userParams.setCountry_id(158);
+            userParams.setAddress(tvAddresschange.getText().toString());
+            userParams.setEmail(tvEmailchange.getText().toString());
+        }
         Call<BaseBean> loginCall = RetrofitUtil.getAPIService().updateUserProfileLists(userParams);
         loginCall.enqueue(new CustomerCallBack<BaseBean>() {
             @Override
             public void onResponseResult(BaseBean response) {
-                int code=response.getCode();
-                Log.d("code:", ""+code);
-                if(code==200) {
+                int code = response.getCode();
+                Log.d("code:", "" + code);
+                if (code == 200) {
                     popupWindow.dismiss();
                     initData();
                 }
