@@ -30,9 +30,9 @@
             android:layout_marginTop="14dp"
             android:background="@mipmap/rectangle"
             android:hint="Email"
+            android:text="test@popmach.com"
             android:paddingLeft="15dp"
             android:singleLine="true"
-            android:text="dennislee@popmach.com"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="15dp" />
@@ -50,7 +50,7 @@
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:singleLine="true"
-            android:text="123456"
+            android:text="test123"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="15dp" />
@@ -75,8 +75,8 @@
             android:gravity="center"
             >
 
-            <ImageView
-                android:id="@+id/iv_fblogin"
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btn_fblogin"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:background="@mipmap/iv_login_f"
