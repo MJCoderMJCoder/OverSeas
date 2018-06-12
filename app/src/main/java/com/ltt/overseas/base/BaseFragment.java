@@ -1,11 +1,14 @@
 package com.ltt.overseas.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ltt.overseas.R;
 
 import butterknife.ButterKnife;
 import io.reactivex.ObservableTransformer;
@@ -20,7 +23,7 @@ public abstract class BaseFragment extends Fragment {
 
     private TagOperator operator = new TagOperator();
     private ObservableTransformer transformer = new RxTransformer(operator);
-
+    private ProgressDialog loadingView;
     protected abstract int bindLayoutID();
     protected abstract void prepareFragment();
 
@@ -40,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onDestroy() {
+        dismissLoadingView();
         operator.onDestroy();
         super.onDestroy();
     }
@@ -48,15 +52,19 @@ public abstract class BaseFragment extends Fragment {
         return transformer;
     }
 
-    protected void showLoadingView(){
-        if(!(getActivity() instanceof BaseActivity))
-            throw new RuntimeException("Activity not extends BaseActivity");
-        ((BaseActivity)getActivity()).showLoadingView();
+    protected void showLoadingView() {
+        if (loadingView == null) {
+            loadingView = new ProgressDialog(getContext());
+            loadingView.setMessage(getString(R.string.loading_view_msg));
+            loadingView.setCanceledOnTouchOutside(false);
+            loadingView.setCancelable(false);
+        }
+        if (!loadingView.isShowing())
+            loadingView.show();
     }
 
-    protected void dismissLoadingView(){
-        if(!(getActivity() instanceof BaseActivity))
-            throw new RuntimeException("Activity not extends BaseActivity");
-        ((BaseActivity)getActivity()).dismissLoadingView();
+    protected void dismissLoadingView() {
+        if (loadingView != null && loadingView.isShowing())
+            loadingView.dismiss();
     }
 }
