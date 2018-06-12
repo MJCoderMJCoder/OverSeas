@@ -42,7 +42,7 @@ public class ChangePassWordActivity extends BaseActivity {
     @BindView(R.id.et_confirm)
     EditText etConfirm;
     @BindView(R.id.ib_changepw)
-    ImageButton ibChangepw;
+    ImageView ibChangepw;
 
     @Override
     protected int bindLayoutID() {
@@ -108,6 +108,9 @@ public class ChangePassWordActivity extends BaseActivity {
 
             @Override
             public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+                if (errorMessage==null){
+                    return;
+                }
                 ToastUtils.showToast(""+errorMessage.getMsg());
             }
         });

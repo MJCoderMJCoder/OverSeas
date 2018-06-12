@@ -101,14 +101,16 @@ public class CompanyProfileActivity extends BaseActivity {
     @BindView(R.id.iv_company_description)
     ImageView ivCompanyDescription;
     @BindView(R.id.iv_update)
-    ImageButton ivUpdate;
+    ImageView ivUpdate;
 
     private PopupWindow popupWindow;
     private View view;
     private String upCon;
     private UserProfileBean.DataBean userdata;
     private ActionBar bar;
-    private boolean isshowchanger = true;    @Override
+    private boolean isshowchanger = true;
+
+    @Override
     protected int bindLayoutID() {
         return R.layout.activity_company_profile;
     }
@@ -216,11 +218,11 @@ public class CompanyProfileActivity extends BaseActivity {
         loginCall.enqueue(new CustomerCallBack<UpdateCompany>() {
             @Override
             public void onResponseResult(UpdateCompany response) {
-                int code=response.getCode();
-                Log.d("code:", ""+code);
-                if(code==200) {
+                int code = response.getCode();
+                Log.d("code:", "" + code);
+                if (code == 200) {
 
-                 ToastUtils.showToast(response.getMsg());
+                    ToastUtils.showToast(response.getMsg());
                 }
             }
 
@@ -232,31 +234,33 @@ public class CompanyProfileActivity extends BaseActivity {
         });
     }
 
-    private void updateUserCon(final String con) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    private String con = "";
 
-            view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
+    private void updateUserCon(String constr) {
+        con = constr;
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
+        if (popupWindow == null) {
+            popupWindow = new PopupWindow(view, 800, 400);
+        }
             final EditText et_con = view.findViewById(R.id.et_con);
 
-            Button bt_submit =  view.findViewById(R.id.bt_submit);
+            Button bt_submit = view.findViewById(R.id.bt_submit);
 
             bt_submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     upCon = et_con.getText().toString();
-                    if (upCon.trim().isEmpty()){
+                    if (upCon.trim().isEmpty()) {
                         ToastUtils.showToast("Couldn't is empty");
                         return;
                     }
-                    update_change(con,upCon);
+                    update_change(con, upCon);
                     et_con.setText("");
-                    et_con.setText("");
+                    popupWindow.dismiss();
                 }
             });
             // 创建一个PopuWidow对象
-            popupWindow = new PopupWindow(view, 800, 400);
-        }
 
         // 使其聚集
         popupWindow.setFocusable(true);
@@ -267,30 +271,30 @@ public class CompanyProfileActivity extends BaseActivity {
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         // 显示的位置为:屏幕的宽度的一半-PopupWindow的高度的一半
-        int xPos = windowManager.getDefaultDisplay().getWidth()/2
-                - popupWindow.getWidth()/2;
+        int xPos = windowManager.getDefaultDisplay().getWidth() / 2
+                - popupWindow.getWidth() / 2;
         Log.i("coder", "xPos:" + xPos);
 
-        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0,0);
+        popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
     }
 
     private void update_change(String con, String upCon) {
-        if (con.equals("company_name")){
+        if (con.equals("company_name")) {
             tvCompanyChangeName.setText(upCon);
         }
-        if (con.equals("company_no")){
+        if (con.equals("company_no")) {
             tvCompanyChangeNo.setText(upCon);
         }
-        if (con.equals("company_website")){
+        if (con.equals("company_website")) {
             tvCompanyChangeWebsite.setText(upCon);
         }
-        if (con.equals("company_country")){
+        if (con.equals("company_country")) {
             tvCompanyChangeCountry.setText(upCon);
         }
-        if (con.equals("company_contact")){
+        if (con.equals("company_contact")) {
             tvCompanyChangeContact.setText(upCon);
         }
-        if (con.equals("company_description")){
+        if (con.equals("company_description")) {
             tvCompanyChangeDescription.setText(upCon);
         }
     }

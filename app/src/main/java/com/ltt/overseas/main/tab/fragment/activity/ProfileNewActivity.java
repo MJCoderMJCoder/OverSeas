@@ -195,30 +195,68 @@ public class ProfileNewActivity extends BaseActivity {
                 updateUserCon("phone");
                 break;
             case R.id.iv_changepw:
-                updateUserCon("all");
+                updateUserCon();
                 break;
         }
     }
 
-    private void updateUserCon(final String con) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
-            final EditText et_con = view.findViewById(R.id.et_con);
-            Button bt_submit = view.findViewById(R.id.bt_submit);
-
-            bt_submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    upCon = et_con.getText().toString();
-                    update_change(con, upCon);
-                    et_con.setText("");
+    private void updateUserCon() {
+        updateUserBean userParams = new updateUserBean();
+        userParams.setFirstname(tvFirstnamechange.getText().toString());
+        userParams.setLastname(tvLastnamechange.getText().toString());
+        userParams.setPostcode(tvPostcodechange.getText().toString());
+        userParams.setPhone(tvContactchange.getText().toString());
+        userParams.setState(tvStatechange.getText().toString());
+        userParams.setCountry_id(158);
+        userParams.setAddress(tvAddresschange.getText().toString());
+        userParams.setEmail(tvEmailchange.getText().toString());
+        Call<BaseBean> loginCall = RetrofitUtil.getAPIService().updateUserProfileLists(userParams);
+        loginCall.enqueue(new CustomerCallBack<BaseBean>() {
+            @Override
+            public void onResponseResult(BaseBean response) {
+                int code = response.getCode();
+                Log.d("code:", "" + code);
+                if (code == 200) {
+                    initData();
+                    ToastUtils.showToast(response.getMsg().toString());
                 }
-            });
-            // 创建一个PopuWidow对象
+            }
+
+            @Override
+            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+                dismissLoadingView();
+                ToastUtils.showToast(errorMessage.getMsg().toString());
+            }
+        });
+    }
+
+    private String con = "";
+
+    private void updateUserCon(String constr) {
+        con = constr;
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
+        if (popupWindow == null) {
             popupWindow = new PopupWindow(view, 800, 400);
         }
+        final EditText et_con = view.findViewById(R.id.et_con);
+
+        Button bt_submit = view.findViewById(R.id.bt_submit);
+
+        bt_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upCon = et_con.getText().toString();
+                if (upCon.trim().isEmpty()) {
+                    ToastUtils.showToast("Couldn't is empty");
+                    return;
+                }
+                update_change(con, upCon);
+                et_con.setText("");
+                popupWindow.dismiss();
+            }
+        });
+        // 创建一个PopuWidow对象
 
         // 使其聚集
         popupWindow.setFocusable(true);
@@ -277,17 +315,6 @@ public class ProfileNewActivity extends BaseActivity {
             userParams.setPostcode(upCon);
         } else {
             userParams.setPostcode(tvPostcodechange.getText().toString());
-        }
-
-        if (con.equals("all")) {
-            userParams.setFirstname(tvFirstnamechange.getText().toString());
-            userParams.setLastname(tvLastnamechange.getText().toString());
-            userParams.setPostcode(tvPostcodechange.getText().toString());
-            userParams.setPhone(tvContactchange.getText().toString());
-            userParams.setState(tvStatechange.getText().toString());
-            userParams.setCountry_id(158);
-            userParams.setAddress(tvAddresschange.getText().toString());
-            userParams.setEmail(tvEmailchange.getText().toString());
         }
         Call<BaseBean> loginCall = RetrofitUtil.getAPIService().updateUserProfileLists(userParams);
         loginCall.enqueue(new CustomerCallBack<BaseBean>() {
