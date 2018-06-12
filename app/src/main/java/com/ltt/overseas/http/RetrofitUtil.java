@@ -65,8 +65,9 @@ public class RetrofitUtil {
         if (XApplication.globalUserBean == null || XApplication.globalUserBean.getAccess_token() == null){
             return "";
         }else{
-            return "Bearer eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJjb25zdW1lcktleSI6Im1CMHlPajVZZW9nZ3hXTGtEdGtJbnl1YTE4d3N2ZmdnIiwidXNlcl9pZCI6IjE1MyIsImlzc3VlZEF0IjoiMjAxOC0wNS0wN1QxNTowMTo0OCswODAwIiwidHRsIjoyNjc4NDAwfQ.s6wW_qSdLrMqX7_oYXVJ4OMZvV1qaiVFzJU8G_5MG74";
-           // return XApplication.globalUserBean.getAccess_token();
+           // return "Bearer eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJjb25zdW1lcktleSI6Im1CMHlPajVZZW9nZ3hXTGtEdGtJbnl1YTE4d3N2ZmdnIiwidXNlcl9pZCI6IjE1MyIsImlzc3VlZEF0IjoiMjAxOC0wNS0wN1QxNTowMTo0OCswODAwIiwidHRsIjoyNjc4NDAwfQ.s6wW_qSdLrMqX7_oYXVJ4OMZvV1qaiVFzJU8G_5MG74";
+            return "Bearer " + XApplication.globalUserBean.getAccess_token();
+
         }
     }
 
