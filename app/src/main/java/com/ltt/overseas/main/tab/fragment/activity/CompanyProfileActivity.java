@@ -200,7 +200,15 @@ public class CompanyProfileActivity extends BaseActivity {
         companyBean.setAddress("");
         companyBean.setCompany_name(tvCompanyChangeName.getText().toString().trim());
         companyBean.setContact_number(tvCompanyChangeContact.getText().toString().trim());
-        companyBean.setCountry_id(123);
+        String trim = tvCompanyChangeCountry.getText().toString().trim();
+        try {
+            int a = Integer.parseInt(trim);
+            companyBean.setCountry_id(a);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            ToastUtils.showToast("country Id need number type");
+            return;
+        }
         companyBean.setDescription(tvCompanyChangeDescription.getText().toString().trim());
         companyBean.setRegistered_number(tvCompanyChangeNo.getText().toString().trim());
         companyBean.setStates_id(123);
@@ -230,7 +238,6 @@ public class CompanyProfileActivity extends BaseActivity {
 
             view = layoutInflater.inflate(R.layout.update_usermsg_popupview, null);
             final EditText et_con = view.findViewById(R.id.et_con);
-            final EditText et_connum = view.findViewById(R.id.et_num);
 
             Button bt_submit =  view.findViewById(R.id.bt_submit);
 
