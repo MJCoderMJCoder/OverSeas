@@ -86,7 +86,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 public void onResponseResult(MyRequestDetailListBean response) {
                     L.v(TAG, response + "");
                     if (response.isStatus()) {
-                        listView.setAdapter(new ReusableAdapter<ExploreQuestionListBean>(response.getData().getQuestions(), R.layout.item_my_request_detail_layout) {
+                        listView.setAdapter(new ReusableAdapter<ExploreQuestionListBean>(response.getData(), R.layout.item_my_request_detail_layout) {
                             @Override
                             public void bindView(ViewHolder holder, ExploreQuestionListBean obj) {
                                 holder.setText(R.id.question_title, obj.getQuestion_title());
@@ -127,7 +127,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 intent.putExtra("conversation_id", conversation_id);
 
                 intent.putExtra("request_category", response_name);
-                intent.putExtra("request_id",request_id);
+                intent.putExtra("request_id", request_id);
                 intent.putExtra("date_created", date_created);
                 startActivity(intent);
                 break;
