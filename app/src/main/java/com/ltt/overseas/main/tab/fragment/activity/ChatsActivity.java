@@ -141,6 +141,7 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
     private View view;
     private String date_created;
     private String conversation_id;
+    private String username;
 
     @Override
     protected int bindLayoutID() {
@@ -304,7 +305,9 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
                 Object members = dataSnapshot.child("conversations").child(conversation_id).child("members").getValue();
                 Map<String, Object> listmessagesMap = (HashMap<String, Object>) listmessages;
                 HashMap<String, Object> membersMap = (HashMap<String, Object>) members;
-                listmessage.addAll(AscKeyComparator.AscMap(listmessagesMap));
+                if (listmessages != null) {
+                    listmessage.addAll(AscKeyComparator.AscMap(listmessagesMap));
+                }
                 if (membersMap != null) {
                     membersBean.setRequester((String) membersMap.get(Constants.REQUESTER));
                     membersBean.setService_provider((String) membersMap.get(Constants.SERVICE_PROVIDER));
@@ -332,7 +335,7 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
      * 设置标题栏内容
      */
     private void setChatActionBar() {
-        String username = getIntent().getStringExtra("username");
+        username = getIntent().getStringExtra("username");
         String request_category = getIntent().getStringExtra("request_category");
         String request_id = getIntent().getStringExtra("request_id");
         bar = ActionBar.init(actionBar);
@@ -509,7 +512,7 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
         messageBean.setCreatedAt(new Date().getTime());
         messageBean.setMessage(message);
         messageBean.setSenderId(membersBean.getService_provider());
-        messageBean.setSenderName("Popmach Asia");
+        messageBean.setSenderName(username);
         messageBean.setType(type);
         showlistmessages.add(messageBean);
         mAdapter.notifyDataSetChanged();
@@ -519,7 +522,8 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
         //添加发送信息到firebase后台数据库
         // TODO: 2018/5/10
 //        if (mNext2 != null) {
-//            mDatabaseReference.child("conversations").child(mNext2.getKey()).child("list_message").push().setValue(messageBean.toMap());
+        Log.e("sss", conversation_id);
+            mDatabaseReference.child("conversations").child(conversation_id).child("list_message").push().setValue(messageBean.toMap());
 //        }
 
     }
