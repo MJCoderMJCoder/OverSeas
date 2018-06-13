@@ -121,7 +121,7 @@ private void broadRecieve(){
             @Override
             public void onResponseResult(List_request_centerDataBean response) {
                 dismissLoadingView();
-                adapter.addAll(response.getData());
+               adapter.addAll(response.getData());
 
             }
 

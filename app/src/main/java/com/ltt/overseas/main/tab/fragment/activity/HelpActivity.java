@@ -70,7 +70,7 @@ public class HelpActivity extends BaseActivity {
             case R.id.tv_login_password:
                 break;
             case R.id.profile_setting:
-                startActivity(new Intent(this,ProfileActivity.class));
+                startActivity(new Intent(this,ProfileNewActivity.class));
                 break;
             case R.id.tv_privacy:
                 intent.putExtra("weburl","https://popmach.com/info/privacy");

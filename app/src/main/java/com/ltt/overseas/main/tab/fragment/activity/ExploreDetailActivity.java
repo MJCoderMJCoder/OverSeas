@@ -65,7 +65,6 @@ public class ExploreDetailActivity extends BaseActivity {
         }
         getRequestList();
 
-
     }
     @OnClick({R.id.iv_notify,R.id.btn_Response})
     public void onClick(View view) {
@@ -114,6 +113,14 @@ public class ExploreDetailActivity extends BaseActivity {
                     requestAnswer.setText(reqeustData.getQuestion_answer());
                     lyRequestList.addView(requestView);
                 }
+                View voiceView1 =  mlflater.inflate(R.layout.detailvoicelayout,null);
+                lyRequestList.addView(voiceView1);
+                View voiceView =  mlflater.inflate(R.layout.detailvoicelayout,null);
+                lyRequestList.addView(voiceView);
+                View pdfView =  mlflater.inflate(R.layout.detailpdflayout,null);
+                lyRequestList.addView(pdfView);
+                View imageView =  mlflater.inflate(R.layout.detailimagelayout,null);
+                lyRequestList.addView(imageView);
 
             }
 

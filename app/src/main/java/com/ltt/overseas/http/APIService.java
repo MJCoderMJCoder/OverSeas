@@ -1,5 +1,6 @@
 package com.ltt.overseas.http;
-
+import com.ltt.overseas.base.BaseBean;
+import com.ltt.overseas.model.CompanyBean;
 import com.ltt.overseas.model.CreateResponseBean;
 import com.ltt.overseas.model.CreateResponseBodyBean;
 import com.ltt.overseas.model.ExploreResponseDataBean;
@@ -8,13 +9,19 @@ import com.ltt.overseas.model.List_request_centerDataBean;
 import com.ltt.overseas.model.LoginBean;
 import com.ltt.overseas.model.MessageListBean;
 import com.ltt.overseas.model.MyRequestDetailListBean;
+import com.ltt.overseas.model.PWBean;
 import com.ltt.overseas.model.PhoneListBean;
 import com.ltt.overseas.model.PreferenceListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
 import com.ltt.overseas.model.SectionListBean;
 import com.ltt.overseas.model.TypeListBean;
+import com.ltt.overseas.model.UpdateCompany;
+import com.ltt.overseas.model.UpdatePWBean;
 import com.ltt.overseas.model.UserBean;
+import com.ltt.overseas.model.UserProfileBean;
+import com.ltt.overseas.model.ViewRequestBean;
+import com.ltt.overseas.model.updateUserBean;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,6 +35,9 @@ import retrofit2.http.Query;
  * Created by Administrator on 2016/5/20.
  */
 public interface APIService {
+    //social_auth/facebook/callback social_auth/facebook
+    @GET("social_auth/facebook/callback")
+    Call<GsonUserBean> callback(@Query("access_token") String access_token);
 
     //Login
     @POST("auth/login")
@@ -68,6 +78,8 @@ public interface APIService {
     @GET("service/main/view_request/{request_id}")
     Call<ExploreResponseDataBean> getQuestions(@Path("request_id") String sectionId);
 
+    @GET("service/main/view_request/{section_id}")
+    Call<ViewRequestBean> getQuestionss(@Path("section_id") String sectionId);
 
     @GET("service/service_provider/response/list_response")
     Call<ResponseListBean> getResponseList(@Query("page") String page, @Header("Authorization") String authorization);
@@ -101,4 +113,16 @@ public interface APIService {
     //    Call<String> delAdddress(@Path("addressId") String addressId);
     @GET("user/list_preference")
     Call<PreferenceListBean> getPreferenceLists();
+
+    @POST("user/change_password")
+    Call<UpdatePWBean> updatePW(@Body PWBean pwParams);
+
+    @GET("user")
+    Call<UserProfileBean> getUserProfileLists();
+
+    @POST("user/update_company")
+    Call<UpdateCompany> updateCompany(@Body CompanyBean companyParams);
+
+    @POST("user/update_profile")
+    Call<BaseBean> updateUserProfileLists(@Body updateUserBean userParams);
 }

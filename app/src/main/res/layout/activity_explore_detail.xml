@@ -81,7 +81,7 @@
                     android:id="@+id/btn_Response"
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
-                    android:text="Chat Now!"
+                    android:text="Response"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:background="@color/green" />

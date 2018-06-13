@@ -28,6 +28,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
                 android:layout_width="@dimen/dp38"
                 android:layout_height="@dimen/dp38" />
 
@@ -46,6 +47,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
                 android:layout_width="@dimen/dp38"
                 android:layout_height="@dimen/dp38" />
 
@@ -64,6 +66,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
                 android:layout_width="@dimen/dp38"
                 android:layout_height="@dimen/dp38" />
 
@@ -82,6 +85,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
                 android:layout_width="@dimen/dp38"
                 android:layout_height="@dimen/dp38" />
 

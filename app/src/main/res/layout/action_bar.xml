@@ -29,9 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/white"
-            android:layout_toLeftOf="@+id/btn_right2"
+            android:layout_toLeftOf="@+id/right_btn2"
             android:layout_toRightOf="@+id/btn_left2"
             android:gravity="center"
+            android:text=""
             android:textSize="@dimen/dp16"/>
 
         <RelativeLayout
@@ -98,6 +99,20 @@
             android:textColor="@color/text_black"
             android:textSize="@dimen/sp12"
             android:visibility="gone"/>
+        <TextView
+            android:id="@+id/right_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:paddingBottom="@dimen/dp4"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:visibility="visible"/>
 
         <ImageView
             android:id="@+id/img_center"

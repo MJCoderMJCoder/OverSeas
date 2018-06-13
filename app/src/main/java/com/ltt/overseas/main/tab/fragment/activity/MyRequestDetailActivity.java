@@ -13,7 +13,7 @@ import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.adapter.ReusableAdapter;
-import com.ltt.overseas.model.MyRequestDetail;
+import com.ltt.overseas.model.ExploreQuestionListBean;
 import com.ltt.overseas.model.MyRequestDetailListBean;
 import com.ltt.overseas.utils.L;
 import com.ltt.overseas.utils.ToastUtils;
@@ -40,6 +40,9 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
     private final String TAG = "(╯‵□′)╯︵┻━┻ 走你！";
     private String conversation_id;
     private String user;
+    private String date_created;
+    private String response_name;
+    private String request_id;
 
     @Override
     protected int bindLayoutID() {
@@ -69,11 +72,11 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
 
         Intent intent = getIntent();
         if (intent != null) {
-            String request_id = intent.getStringExtra("request_id");
+            request_id = intent.getStringExtra("request_id");
             conversation_id = intent.getStringExtra("conversation_id");
             user = intent.getStringExtra("user");
-            String response_name = intent.getStringExtra("response_name");
-            String date_created = intent.getStringExtra("date_created");
+            response_name = intent.getStringExtra("response_name");
+            date_created = intent.getStringExtra("date_created");
             userTV.setText(user);
             response_nameTV.setText(response_name);
             date_createdTV.setText(date_created);
@@ -83,11 +86,11 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 public void onResponseResult(MyRequestDetailListBean response) {
                     L.v(TAG, response + "");
                     if (response.isStatus()) {
-                        listView.setAdapter(new ReusableAdapter<MyRequestDetail>(response.getData(), R.layout.item_my_request_detail_layout) {
+                        listView.setAdapter(new ReusableAdapter<ExploreQuestionListBean>(response.getData().getQuestions(), R.layout.item_my_request_detail_layout) {
                             @Override
-                            public void bindView(ViewHolder holder, MyRequestDetail obj) {
+                            public void bindView(ViewHolder holder, ExploreQuestionListBean obj) {
                                 holder.setText(R.id.question_title, obj.getQuestion_title());
-                                holder.setText(R.id.question_answer, obj.getQuestion_answer().get(0));
+                                holder.setText(R.id.question_answer, obj.getQuestion_answer());
                             }
                         });
                     } else {
@@ -122,6 +125,10 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 intent.putExtra("username", user);
                 //                intent.putExtra("request_category", dataBean.getRequest_category());
                 intent.putExtra("conversation_id", conversation_id);
+
+                intent.putExtra("request_category", response_name);
+                intent.putExtra("request_id",request_id);
+                intent.putExtra("date_created", date_created);
                 startActivity(intent);
                 break;
         }

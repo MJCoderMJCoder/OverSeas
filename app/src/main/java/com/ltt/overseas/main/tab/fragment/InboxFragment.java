@@ -77,6 +77,8 @@ public class InboxFragment extends BaseFragment {
                 intent.putExtra("username", dataBean.getUser());
                 intent.putExtra("request_category", dataBean.getRequest_category());
                 intent.putExtra("conversation_id", dataBean.getConversation_id());
+                intent.putExtra("request_id", dataBean.getRequest_id());
+                intent.putExtra("date_created", dataBean.getDate_created());
                 startActivity(intent);
             }
         });
