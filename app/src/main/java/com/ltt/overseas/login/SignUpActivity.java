@@ -75,9 +75,10 @@ public class SignUpActivity extends BaseActivity {
         bar.setTitle("SIGN UP");
     }
 
-    @OnClick({R.id.iv_google_signup, R.id.iv_fb_signup, R.id.btn_done})
+    @OnClick({R.id.btn_done})
     public void onClick(View view) {
         switch (view.getId()) {
+            /**
             //case R.id.tv_area_code:
               //  getPhoneList();
               //  break;
@@ -86,7 +87,7 @@ public class SignUpActivity extends BaseActivity {
                 break;
             case R.id.iv_fb_signup:
                 ToastUtils.showToast("facebook signup");
-                break;
+                break;*/
             case R.id.btn_done:
 //                goHomePage();
                 if(judgeInput()){
