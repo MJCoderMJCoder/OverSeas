@@ -195,22 +195,6 @@
                     android:text="Terms of Service and Privacy Policy"
                     />
 
-                <ImageView
-                    android:id="@+id/iv_google_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/img_signup2"
-                    android:layout_marginTop="@dimen/dp5"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_fb_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/img_signup1"
-                    android:layout_marginTop="@dimen/dp15"
-                    />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
