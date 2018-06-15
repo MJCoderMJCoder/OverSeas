@@ -30,9 +30,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectL
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
     private int[] mIconUnselectedIds = {
-            R.mipmap.icon_inbox, R.mipmap.requestcenter, R.mipmap.dashboard, R.mipmap.icon_more};
+            R.mipmap.inbox, R.mipmap.request, R.mipmap.dashboard, R.mipmap.more};
     private int[] mIconSelectedIds = {
-            R.mipmap.icon_inbox, R.mipmap.requestcenter, R.mipmap.dashboard, R.mipmap.icon_more};
+            R.mipmap.inbox, R.mipmap.request, R.mipmap.dashboard, R.mipmap.more};
 
     @Override
     protected int bindLayoutID() {
