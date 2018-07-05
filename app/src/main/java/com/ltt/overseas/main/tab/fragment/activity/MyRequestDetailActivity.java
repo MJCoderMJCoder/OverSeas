@@ -90,7 +90,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                             @Override
                             public void bindView(ViewHolder holder, ExploreQuestionListBean obj) {
                                 holder.setText(R.id.question_title, obj.getQuestion_title());
-                                holder.setText(R.id.question_answer, obj.getQuestion_answer());
+                                holder.setText(R.id.question_answer, obj.getValue());
                             }
                         });
                     } else {

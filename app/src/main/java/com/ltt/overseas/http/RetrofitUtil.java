@@ -36,7 +36,6 @@ public class RetrofitUtil {
         return mAPIService;
     }
 
-
     public static OkHttpClient genericClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -18,7 +18,7 @@
             android:layout_height="30dp"/>
 
         <TextView
-            android:id="@+id/music_cur"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Document tittle.pdf"/>
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <ImageView
-            android:id="@+id/play"
+            android:id="@+id/download"
             android:src="@mipmap/download"
             android:background="@null"
             android:layout_width="30dp"

@@ -63,9 +63,11 @@
                 android:id="@+id/ly_listquest"
                 android:orientation="vertical">
                 <View style="@style/common_divider_task" />
-                <include layout="@layout/detailrequestlayout"/>
-            </LinearLayout>
 
+                <include layout="@layout/detailrequestlayout"/>
+
+            </LinearLayout>
+            <include layout="@layout/detailimagelayout"/>
 
 
 
