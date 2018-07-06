@@ -29,7 +29,7 @@
             android:src="@mipmap/play" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/seekbar"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
 

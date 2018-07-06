@@ -184,8 +184,10 @@ public class ExploreDetailActivity extends BaseActivity {
                                     }
                                 });
 
-                            } else if (attachmentfile.getFile_type().equals("audio/mp3")) {
+                            } else if (attachmentfile.getFile_type().equals("audio/mp3")||attachmentfile.getFile_type().equals("audio/wav")
+                                    ||attachmentfile.getFile_type().equals("application/octet-stream")) {
                                 View voiceView = mlflater.inflate(R.layout.detailvoicelayout, null);
+                                AudioImageActivity audioObject =new AudioImageActivity(voiceView,attachmentfile.getFile_path(),ExploreDetailActivity.this);
                                 TextView tv_tittle = voiceView.findViewById(R.id.tv_title);
                                 tv_tittle.setText(attachmentfile.getFile_name());
                                 lyRequestList.addView(voiceView);
