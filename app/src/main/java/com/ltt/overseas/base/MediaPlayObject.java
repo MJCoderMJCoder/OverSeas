@@ -1,4 +1,4 @@
-package com.ltt.overseas.main.tab.fragment.activity;
+package com.ltt.overseas.base;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -39,7 +39,7 @@ import java.util.TimerTask;
  * Created by Administrator on 2018/6/24 0024.
  */
 
-public class AudioImageActivity {
+public class MediaPlayObject{
     private ImageView mSoundIamge;
     private SeekBar seekBar;
     private TextView musicCur;
@@ -49,7 +49,7 @@ public class AudioImageActivity {
     private SimpleDateFormat format=null;
     private Timer timer;
     private MediaPlayer mediaPlayer;
-    public AudioImageActivity(View view, String mp3Path, Activity activity) {
+    public MediaPlayObject(View view, String mp3Path, Activity activity) {
         format = new SimpleDateFormat("mm:ss");
         mView = view;
         mMp3Path = mp3Path;
