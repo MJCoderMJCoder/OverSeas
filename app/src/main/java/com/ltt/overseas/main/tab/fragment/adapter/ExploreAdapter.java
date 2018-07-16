@@ -41,6 +41,10 @@ public class ExploreAdapter extends RecyclerAdapter {
             return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_explore_another, parent, false));
 
     }
+    public void clear() {
+        list.clear();
+        notifyDataSetChanged();
+    }
     public void addAll(Collection<? extends Object> collection) {
         if (collection == null) {
             return;

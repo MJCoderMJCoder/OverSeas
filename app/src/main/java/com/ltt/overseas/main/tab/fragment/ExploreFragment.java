@@ -81,6 +81,10 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
        broadRecieve();
 
     }
+    //secionid1,sectionid2,sectionid3
+    public  void setSectionList(String sectionList){
+        mSectionList=sectionList;
+    }
 private void broadRecieve(){
     LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
     IntentFilter intentFilter = new IntentFilter();
@@ -95,7 +99,7 @@ private void broadRecieve(){
     };
     localBroadcastManager.registerReceiver(br, intentFilter);
     if (mSectionList.isEmpty())
-        getQuestionList();
+        initQuestionList();
 }
     @OnClick({R.id.iv_menu, R.id.iv_notify})
     public void onClick(View v) {
@@ -114,13 +118,14 @@ private void broadRecieve(){
     public void onRefresh() {
         refreshLayout.setRefreshing(false);
     }
-    private void getQuestionList() {
+    public void getQuestionList() {
         showLoadingView();
         Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentrebysection(mSectionList);
         call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
             @Override
             public void onResponseResult(List_request_centerDataBean response) {
                 dismissLoadingView();
+                adapter.clear();
                adapter.addAll(response.getData());
 
             }
@@ -132,6 +137,24 @@ private void broadRecieve(){
 
         });
     }
+    public void initQuestionList() {
+        showLoadingView();
+        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentre();
+        call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
+            @Override
+            public void onResponseResult(List_request_centerDataBean response) {
+                dismissLoadingView();
+                adapter.clear();
+                adapter.addAll(response.getData());
 
+            }
+
+            @Override
+            public void onResponseError(BaseBean errorMessage, boolean isNetError) {
+                dismissLoadingView();
+            }
+
+        });
+    }
 
 }
