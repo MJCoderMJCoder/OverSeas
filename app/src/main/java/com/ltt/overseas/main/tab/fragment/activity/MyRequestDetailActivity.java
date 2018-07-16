@@ -110,7 +110,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
         }
     }
 
-    @OnClick({R.id.tv_profile}) //R.id.tv_tomessage,
+    @OnClick({R.id.tv_profile, R.id.iv_notify}) //R.id.tv_tomessage,
     public void onClick(View v) {
         switch (v.getId()) {
             //            case R.id.tv_tomessage:
@@ -130,6 +130,9 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
                 intent.putExtra("request_id", request_id);
                 intent.putExtra("date_created", date_created);
                 startActivity(intent);
+                break;
+            case R.id.iv_notify:
+                startActivity(new Intent(MyRequestDetailActivity.this, NotificationActivity.class));
                 break;
         }
 
