@@ -69,10 +69,10 @@ public interface APIService {
     Call<TypeListBean> getTypeList();
 
     @GET("service/main/list_request_center")
-    Call<List_request_centerDataBean> getListRequestCentre();
+    Call<List_request_centerDataBean> getListRequestCentre(@Header("Authorization") String authorization);
 
     @GET("service/main/list_request_center?sort=older")
-    Call<List_request_centerDataBean> getListRequestCentrebysection(@Query("section_id") String section_id);
+    Call<List_request_centerDataBean> getListRequestCentrebysection(@Query("section_id") String section_id,@Header("Authorization") String authorization);
     //Get Country id
     @GET("service/main/list_section/{type_id}")
     Call<SectionListBean> getSectionList(@Path("type_id") String typeId);

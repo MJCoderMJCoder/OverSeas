@@ -30,7 +30,7 @@
             android:layout_marginTop="14dp"
             android:background="@mipmap/rectangle"
             android:hint="Email"
-            android:text="test@popmach.com"
+            android:text="awesome@luqman.rocks"
             android:paddingLeft="15dp"
             android:singleLine="true"
             android:textColor="@color/white"

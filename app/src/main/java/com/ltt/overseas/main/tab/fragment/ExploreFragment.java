@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.lin.widget.SwipeRecyclerView;
 import com.ltt.overseas.R;
+import com.ltt.overseas.XApplication;
 import com.ltt.overseas.base.BaseBean;
 import com.ltt.overseas.base.BaseFragment;
 import com.ltt.overseas.base.RecyclerAdapter;
@@ -120,7 +121,7 @@ private void broadRecieve(){
     }
     public void getQuestionList() {
         showLoadingView();
-        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentrebysection(mSectionList);
+        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentrebysection(mSectionList, XApplication.globalUserBean.getAccess_token());
         call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
             @Override
             public void onResponseResult(List_request_centerDataBean response) {
@@ -139,7 +140,7 @@ private void broadRecieve(){
     }
     public void initQuestionList() {
         showLoadingView();
-        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentre();
+        Call<List_request_centerDataBean> call = RetrofitUtil.getAPIService().getListRequestCentre(XApplication.globalUserBean.getAccess_token());
         call.enqueue(new CustomerCallBack<List_request_centerDataBean>() {
             @Override
             public void onResponseResult(List_request_centerDataBean response) {
