@@ -2,10 +2,13 @@ package com.ltt.overseas.main.tab.fragment.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.ltt.overseas.R;
 import com.ltt.overseas.base.BaseActivity;
 import com.ltt.overseas.base.BaseBean;
@@ -13,10 +16,13 @@ import com.ltt.overseas.core.ActionBar;
 import com.ltt.overseas.http.CustomerCallBack;
 import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.adapter.ReusableAdapter;
+import com.ltt.overseas.model.AttachmentFileBean;
 import com.ltt.overseas.model.ExploreQuestionListBean;
 import com.ltt.overseas.model.MyRequestDetailListBean;
 import com.ltt.overseas.utils.L;
 import com.ltt.overseas.utils.ToastUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +49,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
     private String date_created;
     private String response_name;
     private String request_id;
+    private LayoutInflater mlflater;
 
     @Override
     protected int bindLayoutID() {
@@ -59,9 +66,10 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
             }
         });
         bar.setTitle("Enquiry");
-        bar.showNotify();
+        //        bar.showNotify();
 
         //        tvTomessage.setOnClickListener(this);
+        mlflater = getLayoutInflater().from(MyRequestDetailActivity.this);
     }
 
     @Override
@@ -84,13 +92,22 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
             myRequestDetailListBeanCall.enqueue(new CustomerCallBack<MyRequestDetailListBean>() {
                 @Override
                 public void onResponseResult(MyRequestDetailListBean response) {
-                    L.v(TAG, response + "");
+                    L.v(TAG, "" + response);
                     if (response.isStatus()) {
                         listView.setAdapter(new ReusableAdapter<ExploreQuestionListBean>(response.getData(), R.layout.item_my_request_detail_layout) {
                             @Override
                             public void bindView(ViewHolder holder, ExploreQuestionListBean obj) {
-                                holder.setText(R.id.question_title, obj.getQuestion_title());
-                                holder.setText(R.id.question_answer, obj.getValue());
+                                if (obj.getQuestion_title().contains("attachment") || obj.getQuestion_title().contains("photo")) {
+                                    String value = obj.getValue().trim();
+                                    if (!"false".equals(value)) {
+                                        List<AttachmentFileBean> attachmentFileList = new Gson().fromJson(value, new TypeToken<List<AttachmentFileBean>>() {
+                                        }.getType());
+                                        holder.showAttachment(R.id.container, MyRequestDetailActivity.this, attachmentFileList, mlflater);
+                                    }
+                                } else {
+                                    holder.setText(R.id.question_title, obj.getQuestion_title());
+                                    holder.setText(R.id.question_answer, obj.getValue());
+                                }
                             }
                         });
                     } else {

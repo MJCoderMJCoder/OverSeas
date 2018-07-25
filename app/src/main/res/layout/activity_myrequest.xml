@@ -568,6 +568,6 @@
         android:background="@drawable/bg_shape_selected"
         android:backgroundTint="#5ebfdf"
         android:gravity="center"
-        android:text="Response"
+        android:text="Chat Now"
         android:textColor="@color/white"/>
 </RelativeLayout>

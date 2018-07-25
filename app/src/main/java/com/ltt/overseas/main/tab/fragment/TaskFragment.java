@@ -93,7 +93,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     protected void prepareFragment() {
         bar = ActionBar.init(actionBar);
-        bar.showNotify();
+        //        bar.showNotify();
         bar.setTitle("My Tasks");
         bar.setLeft(R.mipmap.back, new View.OnClickListener() {
             @Override
@@ -125,7 +125,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
                     @Override
                     public void onResponseResult(final ResponseListBean response) {
-                        L.v(TAG, "changeUi：" + response);
+                        L.v(TAG, "changeUi" + response);
                         dismissLoadingView();
                         if (response.isStatus()) {
                             myResponseAdapter = new MyResponseAdapter(response.getData());
@@ -271,7 +271,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
             @Override
             public void onResponseResult(final ResponseListBean response) {
-                L.v(TAG, "onCreateView：" + response);
+                L.v(TAG, "onCreateView" + response);
                 if (response.isStatus()) {
                     myResponseAdapter = new MyResponseAdapter(response.getData());
                     recyclerView.setAdapter(myResponseAdapter);
