@@ -125,7 +125,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
                     @Override
                     public void onResponseResult(final ResponseListBean response) {
-                        L.v(TAG, response + "");
+                        L.v(TAG, "changeUi：" + response);
                         dismissLoadingView();
                         if (response.isStatus()) {
                             myResponseAdapter = new MyResponseAdapter(response.getData());
@@ -271,7 +271,7 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         responseListBeanCall.enqueue(new CustomerCallBack<ResponseListBean>() {
             @Override
             public void onResponseResult(final ResponseListBean response) {
-                L.v(TAG, response + "");
+                L.v(TAG, "onCreateView：" + response);
                 if (response.isStatus()) {
                     myResponseAdapter = new MyResponseAdapter(response.getData());
                     recyclerView.setAdapter(myResponseAdapter);
@@ -280,7 +280,12 @@ public class TaskFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         public void onItemClick(Object object, View view, int position) {
                             //                startActivity(new Intent(getActivity(), TaskDetailActivity.class));
                             Intent intent = new Intent(getActivity(), MyRequestDetailActivity.class);
-                            intent.putExtra("request_id", response.getData().get(position).getRequest_id());
+                            ResponseBean responseBean = response.getData().get(position);
+                            intent.putExtra("request_id", responseBean.getRequest_id());
+                            intent.putExtra("conversation_id", responseBean.getConversation_id());
+                            intent.putExtra("response_name", responseBean.getResponse_name());
+                            intent.putExtra("user", responseBean.getUser());
+                            intent.putExtra("date_created", responseBean.getDate_created());
                             startActivity(intent);
                         }
                     });
