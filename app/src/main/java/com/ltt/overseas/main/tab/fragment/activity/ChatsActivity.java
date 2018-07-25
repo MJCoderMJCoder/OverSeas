@@ -355,6 +355,7 @@ public class ChatsActivity extends BaseActivity implements View.OnClickListener 
         }
         if (request_category == null) {
             bar.setBottom("tests");
+            return;
         } else {
             bar.setBottom(request_category);
         }
