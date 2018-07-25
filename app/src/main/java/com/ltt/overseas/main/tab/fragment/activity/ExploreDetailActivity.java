@@ -70,6 +70,8 @@ import retrofit2.Call;
 public class ExploreDetailActivity extends BaseActivity {
     ActionBar bar;
     private String requestid;
+    private String userName;
+    private String dataCreateTime;
     //>0 可以创建
     private String show_button_response = "0";
     private LayoutInflater mlflater;
@@ -100,6 +102,8 @@ public class ExploreDetailActivity extends BaseActivity {
         bar.showNotify();
         mlflater = getLayoutInflater().from(ExploreDetailActivity.this);
         requestid = this.getIntent().getStringExtra("requestid");
+        dataCreateTime=getIntent().getStringExtra("datacratetime");
+        userName=getIntent().getStringExtra("username");
         show_button_response = this.getIntent().getStringExtra("show_button_response");
         if (show_button_response.equals("0")) {
             btn_response.setVisibility(View.GONE);
@@ -132,6 +136,10 @@ public class ExploreDetailActivity extends BaseActivity {
                 dismissLoadingView();
                 Intent intent = new Intent(getContext(), ChatsActivity.class);
                 intent.putExtra("conversation_id", response.getConversation());
+                intent.putExtra("username", userName);
+                //intent.putExtra("request_category", dataBean.getRequest_category());
+                intent.putExtra("request_id", requestid);
+                intent.putExtra("date_created", dataCreateTime);
                 startActivity(intent);
             }
 
