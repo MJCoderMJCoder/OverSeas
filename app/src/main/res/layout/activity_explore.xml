@@ -38,8 +38,8 @@
     </LinearLayout>
         <Button
             android:id="@+id/btn_search"
-            android:layout_width="320dp"
-            android:layout_height="@dimen/dp35"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:background="@drawable/bg_shape_selected"
             android:backgroundTint="#5ebfdf"
@@ -49,7 +49,8 @@
             android:textColor="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/sp20"/>
+            android:layout_marginBottom="60dp"/>
+          <include layout="@layout/golistinglayout" />
     </RelativeLayout>
 
 

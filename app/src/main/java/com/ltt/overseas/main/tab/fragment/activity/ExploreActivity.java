@@ -49,6 +49,8 @@ public class ExploreActivity extends BaseActivity {
     RecyclerView childLv;
     @BindView(R.id.btn_search)
     Button btn_search;
+    @BindView(R.id.golisting)
+    Button btn_golisting;
     ActionBar bar;
     private TypeListAdapter parentAdapter;
     private SectionListAdapter childAdapter;
@@ -141,7 +143,7 @@ public class ExploreActivity extends BaseActivity {
             }
         });
     }
-    @OnClick({R.id.btn_search})
+    @OnClick({R.id.btn_search,R.id.golisting})
     public void onClick(View v){
         switch (v.getId()) {
             case R.id.btn_search:
@@ -149,6 +151,10 @@ public class ExploreActivity extends BaseActivity {
                 intent.putExtra("sectionlist", childAdapter.getSectionList());
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 finish();
+            case R.id.golisting:
+                Intent intentweb = new Intent(this,WebviewActivity.class);
+                intentweb.putExtra("weburl","https://popmach.com/buy?parent_id=6&sort=newest&page=1");
+                startActivity(intentweb);
                 break;
 
         }

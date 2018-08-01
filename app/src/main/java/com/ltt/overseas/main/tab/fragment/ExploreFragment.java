@@ -26,6 +26,7 @@ import com.ltt.overseas.http.RetrofitUtil;
 import com.ltt.overseas.main.tab.fragment.activity.ExploreActivity;
 import com.ltt.overseas.main.tab.fragment.activity.ExploreDetailActivity;
 import com.ltt.overseas.main.tab.fragment.activity.NotificationActivity;
+import com.ltt.overseas.main.tab.fragment.activity.WebviewActivity;
 import com.ltt.overseas.main.tab.fragment.adapter.ExploreAdapter;
 import com.ltt.overseas.model.ExploreQuestionBean;
 import com.ltt.overseas.model.ExploreQuestionListBean;
@@ -104,7 +105,7 @@ private void broadRecieve(){
     if (mSectionList.isEmpty())
         initQuestionList();
 }
-    @OnClick({R.id.iv_menu, R.id.iv_notify})
+    @OnClick({R.id.iv_menu, R.id.iv_notify,R.id.golisting})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_menu:
@@ -112,6 +113,11 @@ private void broadRecieve(){
                 break;
             case R.id.iv_notify:
                 startActivity(new Intent(getActivity(), NotificationActivity.class));
+                break;
+            case R.id.golisting:
+                Intent intentweb = new Intent(getContext(),WebviewActivity.class);
+                intentweb.putExtra("weburl","https://popmach.com/buy?parent_id=6&sort=newest&page=1");
+                startActivity(intentweb);
                 break;
         }
 
