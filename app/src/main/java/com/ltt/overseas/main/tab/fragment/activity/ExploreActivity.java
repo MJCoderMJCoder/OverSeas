@@ -151,6 +151,7 @@ public class ExploreActivity extends BaseActivity {
                 intent.putExtra("sectionlist", childAdapter.getSectionList());
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 finish();
+                break;
             case R.id.golisting:
                 Intent intentweb = new Intent(this,WebviewActivity.class);
                 intentweb.putExtra("weburl","https://popmach.com/buy?parent_id=6&sort=newest&page=1");
