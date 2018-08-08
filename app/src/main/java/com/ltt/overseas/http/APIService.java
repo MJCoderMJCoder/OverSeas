@@ -15,6 +15,7 @@ import com.ltt.overseas.model.PreferenceListBean;
 import com.ltt.overseas.model.RequestListBean;
 import com.ltt.overseas.model.ResponseListBean;
 import com.ltt.overseas.model.SectionListBean;
+import com.ltt.overseas.model.SignTokenBean;
 import com.ltt.overseas.model.TypeListBean;
 import com.ltt.overseas.model.UpdateCompany;
 import com.ltt.overseas.model.UpdatePWBean;
@@ -45,6 +46,10 @@ public interface APIService {
     //Login
     @POST("auth/login")
     Call<GsonUserBean> login(@Body LoginBean userParams);
+
+    @GET("service/message")
+    Call<SignTokenBean> getSignToken();
+
 
     @POST("auth/register")
     Call<GsonUserBean> register(@Body UserBean userParams);
@@ -128,4 +133,7 @@ public interface APIService {
 
     @POST("user/update_profile")
     Call<BaseBean> updateUserProfileLists(@Body updateUserBean userParams);
+
+    @GET("social_auth/google")
+    Call<GsonUserBean> googlelogin(@Query("id_token") String id_token);
 }

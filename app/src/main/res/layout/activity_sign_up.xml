@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg3_introduce"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/action_bar" />
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp7"
                 android:text="First Name"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/et_first_name"
@@ -32,8 +32,8 @@
                 android:hint="First Name"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:layout_marginBottom="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp13"
                 android:text="Last Name"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/dp13" />
 
             <EditText
@@ -53,8 +53,8 @@
                 android:hint="Last Name"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -74,8 +74,8 @@
                 android:hint="Email"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp" />
 
 
@@ -85,7 +85,7 @@
                 android:layout_marginBottom="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp13"
                 android:text="Password"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/dp13" />
 
             <EditText
@@ -97,8 +97,8 @@
                 android:paddingLeft="15dp"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_marginBottom="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp13"
                 android:text="Phone Number"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/dp13" />
 
             <LinearLayout
@@ -127,8 +127,8 @@
                     android:hint="+852"
                     android:paddingLeft="15dp"
                     android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="15dp" />
 
                 <EditText
@@ -142,8 +142,8 @@
                     android:paddingLeft="15dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="15dp" />
 
             </LinearLayout>
@@ -154,7 +154,7 @@
                 android:layout_marginBottom="@dimen/dp7"
                 android:layout_marginTop="@dimen/dp13"
                 android:text="Referral Code"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/dp13" />
 
             <EditText
@@ -166,8 +166,8 @@
                 android:paddingLeft="15dp"
                 android:inputType="text"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15dp" />
 
             <LinearLayout
@@ -180,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/dp11"
                     android:layout_marginTop="@dimen/dp11"
                     android:text="By Creating an account you agree to our"
@@ -189,7 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/dp11"
                     android:layout_marginTop="@dimen/dp7"
                     android:text="Terms of Service and Privacy Policy"
@@ -199,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/dp11"
                     android:layout_marginTop="@dimen/dp15"
                     android:text="Already have an account?"

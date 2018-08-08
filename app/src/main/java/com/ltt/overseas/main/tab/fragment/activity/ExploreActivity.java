@@ -92,7 +92,7 @@ public class ExploreActivity extends BaseActivity {
         childAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-               int   a=position;
+                int   a=position;
             }
         });
         LinearLayoutManager parentManager = new LinearLayoutManager(this );
@@ -160,7 +160,4 @@ public class ExploreActivity extends BaseActivity {
 
         }
     }
-
-
-
 }

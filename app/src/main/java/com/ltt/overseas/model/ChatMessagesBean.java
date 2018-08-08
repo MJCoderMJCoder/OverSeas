@@ -1,6 +1,7 @@
 package com.ltt.overseas.model;
 
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.ServerValue;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
  * Created by yunwen on 2018/5/7.
  */
 
-public class ChatMessageBean  {
+public class ChatMessagesBean {
 
     private String channel_type;
     private List<MessageBean> list_message;
@@ -41,11 +42,11 @@ public class ChatMessageBean  {
     public void setMembers(MembersBean members) {
         this.members = members;
     }
-    public ChatMessageBean() {
+    public ChatMessagesBean() {
 
     }
 
-    public ChatMessageBean(String channel_type, List<MessageBean> list_message, MembersBean members) {
+    public ChatMessagesBean(String channel_type, List<MessageBean> list_message, MembersBean members) {
         this.channel_type = channel_type;
         this.list_message = list_message;
         this.members = members;
@@ -63,7 +64,7 @@ public class ChatMessageBean  {
 
     public static class MessageBean {
 
-        String createdAt;
+        Map<String, String> createdAt;
         private String message;
         private String senderId;
         private String senderName;
@@ -89,14 +90,14 @@ public class ChatMessageBean  {
             this.senderName = senderName;
             this.type = type;
             // Initialize to current time
-            createdAt = new Date().getTime() + "";
+            createdAt = ServerValue.TIMESTAMP;
         }
 
-        public String getCreatedAt() {
+        public  Map<String, String> getCreatedAt() {
             return createdAt;
         }
 
-        public void setCreatedAt(String createdAt) {
+        public void setCreatedAt( Map<String, String> createdAt) {
             this.createdAt = createdAt;
         }
 
@@ -136,10 +137,10 @@ public class ChatMessageBean  {
         public Map<String, Object> toMap() {
             HashMap<String, Object> result = new HashMap<>();
             result.put("createdAt", createdAt);
-            result.put("message", message + "");
-            result.put("senderId", senderId + "");
-            result.put("senderName", senderName + "");
-            result.put("type", type + "");
+            result.put("message", message);
+            result.put("senderId", senderId);
+            result.put("senderName", senderName);
+            result.put("type", type);
             return result;
         }
     }
@@ -182,5 +183,4 @@ public class ChatMessageBean  {
             return result;
         }
     }
-
 }

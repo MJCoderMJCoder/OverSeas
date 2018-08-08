@@ -103,7 +103,6 @@
              android:orientation="vertical"
              android:visibility="gone"
              android:weightSum="3">
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="0dp"
@@ -112,12 +111,10 @@
                  android:padding="10dp"
                  android:text="Email：kobe@foxmail.com"
                  android:textColor="@color/white"/>
-
              <View
                  android:layout_width="match_parent"
                  android:layout_height="1dp"
                  android:background="@color/white"/>
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="0dp"
@@ -126,12 +123,10 @@
                  android:padding="10dp"
                  android:text="Phone number：12332111234567"
                  android:textColor="@color/white"/>
-
              <View
                  android:layout_width="match_parent"
                  android:layout_height="1dp"
                  android:background="@color/white"/>
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="0dp"
@@ -141,21 +136,17 @@
                  android:text="Address：Room 403,No.37,ShiFan Residential Quarter,China"
                  android:textColor="@color/white"/>
          </LinearLayout>
-
          <View style="@style/common_divider_task"/>
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:orientation="vertical">
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal"
                  android:weightSum="2">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -165,7 +156,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -174,18 +164,14 @@
                      android:text="Excavator"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal"
                  android:weightSum="2">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -195,7 +181,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -204,17 +189,13 @@
                      android:text="2000-2017"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -224,7 +205,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -233,17 +213,13 @@
                      android:text="HongKong"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -253,7 +229,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -262,17 +237,13 @@
                      android:text="Caterpilar"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -282,7 +253,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -291,18 +261,13 @@
                      android:text="390Fl"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -312,7 +277,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -321,17 +285,13 @@
                      android:text="09:00-18:00"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -341,7 +301,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -350,17 +309,13 @@
                      android:text="Chinese,English"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -370,7 +325,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -379,17 +333,13 @@
                      android:text="Need CAP with AC"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
-
              <View style="@style/common_divider_task"/>
-
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/dp30"
                  android:gravity="center"
                  android:orientation="horizontal">
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -399,7 +349,6 @@
                      android:textColor="@color/black"
                      android:textSize="@dimen/dp12"
                      android:textStyle="bold"/>
-
                  <TextView
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
@@ -408,19 +357,15 @@
                      android:text="Quoted"
                      android:textColor="@color/text_black_ligth"
                      android:textSize="@dimen/dp12"/>
-
              </LinearLayout>
          </LinearLayout>
-
          <View style="@style/common_divider_task"/>
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:gravity="center"
              android:orientation="vertical"
              android:visibility="gone">
-
              <TextView
                  android:layout_width="wrap_content"
                  android:layout_height="38dp"
@@ -429,25 +374,18 @@
                  android:textColor="@color/black"
                  android:textSize="@dimen/dp12"
                  android:textStyle="bold"/>
-
-
          </LinearLayout>
-
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:gravity="center"
              android:orientation="vertical"
              android:visibility="gone">
-
              <ImageView
                  android:layout_width="150dp"
                  android:layout_height="@dimen/dp110"
                  android:background="@mipmap/bg3_introduce"/>
          </LinearLayout>
-
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
@@ -455,12 +393,10 @@
              android:gravity="center_vertical"
              android:orientation="horizontal"
              android:visibility="gone">
-
              <ImageView
                  android:layout_width="@dimen/dp24"
                  android:layout_height="@dimen/dp24"
                  android:background="@mipmap/iv_person"/>
-
              <TextView
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
@@ -471,7 +407,6 @@
                  android:textSize="@dimen/dp12"
                  android:textStyle="bold"/>
          </LinearLayout>
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
@@ -479,7 +414,6 @@
              android:gravity="center_vertical"
              android:orientation="vertical"
              android:visibility="gone">
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -487,7 +421,6 @@
                  android:textColor="@color/common_task_detail_text"
                  android:textSize="18dp"
                  android:textStyle="bold"/>
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -496,7 +429,6 @@
                  android:textColor="#2699fb"
                  android:textSize="12dp"
                  android:textStyle="bold"/>
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -505,7 +437,6 @@
                  android:textColor="#2699fb"
                  android:textSize="12dp"
                  android:textStyle="bold"/>
-
              <TextView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -515,7 +446,6 @@
                  android:textSize="12dp"
                  android:textStyle="bold"/>
          </LinearLayout>
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="40dp"
@@ -525,7 +455,6 @@
              android:orientation="horizontal"
              android:visibility="gone"
              android:weightSum="2">
-
              &lt;!&ndash; <Button
                   android:id="@+id/btn_contact"
                   android:layout_width="wrap_content"
@@ -542,7 +471,6 @@
                  android:gravity="center"
                  android:text="Message"
                  android:textColor="@color/white"/>
-
              <TextView
                  android:layout_width="0dp"
                  android:layout_height="match_parent"

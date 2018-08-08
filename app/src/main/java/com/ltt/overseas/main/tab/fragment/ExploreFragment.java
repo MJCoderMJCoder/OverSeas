@@ -82,29 +82,29 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
                 startActivity(intent);
             }
         });
-       broadRecieve();
+        broadRecieve();
 
     }
     //secionid1,sectionid2,sectionid3
     public  void setSectionList(String sectionList){
         mSectionList=sectionList;
     }
-private void broadRecieve(){
-    LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction("tellexfragment");
-    BroadcastReceiver br = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mSectionList = intent.getStringExtra("sectionlist");
-            getQuestionList();
-        }
+    private void broadRecieve(){
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("tellexfragment");
+        BroadcastReceiver br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                mSectionList = intent.getStringExtra("sectionlist");
+                getQuestionList();
+            }
 
-    };
-    localBroadcastManager.registerReceiver(br, intentFilter);
-    if (mSectionList.isEmpty())
-        initQuestionList();
-}
+        };
+        localBroadcastManager.registerReceiver(br, intentFilter);
+        if (mSectionList.isEmpty())
+            initQuestionList();
+    }
     @OnClick({R.id.iv_menu, R.id.iv_notify,R.id.golisting})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -135,7 +135,7 @@ private void broadRecieve(){
             public void onResponseResult(List_request_centerDataBean response) {
                 dismissLoadingView();
                 adapter.clear();
-               adapter.addAll(response.getData());
+                adapter.addAll(response.getData());
 
             }
 

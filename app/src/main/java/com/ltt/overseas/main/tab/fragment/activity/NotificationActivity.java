@@ -59,9 +59,9 @@ public class NotificationActivity extends BaseActivity {
         adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object object, View view, int position) {
-                Intent intent = new Intent(NotificationActivity.this, ChatsActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(NotificationActivity.this, ChatsActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
         toprecycle.setAdapter(adapter);

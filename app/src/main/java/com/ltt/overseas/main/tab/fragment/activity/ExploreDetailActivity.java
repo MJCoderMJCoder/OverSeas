@@ -176,7 +176,7 @@ public class ExploreDetailActivity extends BaseActivity {
                                         .error(R.mipmap.icon_close)
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .override(300,100)
-                                         .into(imageView);
+                                        .into(imageView);
 
                             } else if (attachmentfile.getFile_type().equals("application/pdf")) {
                                 View pdfView = mlflater.inflate(R.layout.detailpdflayout, null);
