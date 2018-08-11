@@ -66,13 +66,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-
+/**
+ * Created by Administrator on 2018/1/25.
+ * Request Centre question detail
+ */
 public class ExploreDetailActivity extends BaseActivity {
     ActionBar bar;
     private String requestid;
     private String userName;
     private String dataCreateTime;
-    //>0 可以创建
+    //   greater than 0 You can create and enter the chat interface.
     private String show_button_response = "0";
     private LayoutInflater mlflater;
     @BindView(R.id.ly_listquest)
@@ -80,7 +83,7 @@ public class ExploreDetailActivity extends BaseActivity {
     @BindView(R.id.btn_Response)
     Button btn_response;
     public static final int DOWNLOAD_ERROR = 2;
-    // 下载成功
+    // Download success
     public static final int DOWNLOAD_SUCCESS = 1;
     private String authorization = XApplication.globalUserBean.getAccess_token();
 
@@ -126,8 +129,8 @@ public class ExploreDetailActivity extends BaseActivity {
     }
 
     private void clickBtnResponse() {
-        // 1 创建response
-        // 2 成功后调用conversaion
+        // 1 create response
+        // 2 enter chat view
         showLoadingView();
         Call<CreateResponseBean> call = RetrofitUtil.getAPIService().postCreateResponse(new CreateResponseBodyBean(requestid), authorization);
         call.enqueue(new CustomerCallBack<CreateResponseBean>() {
@@ -168,6 +171,7 @@ public class ExploreDetailActivity extends BaseActivity {
                         for (final AttachmentFileBean attachmentfile :
                                 attachmentFileList) {
                             if (attachmentfile.getFile_type().equals("image/png") || attachmentfile.getFile_type().equals("image/jpeg")) {
+                                //image view
                                 LinearLayout ly_iamge= (LinearLayout) findViewById(R.id.ly_image);
                                 ImageView imageView =new ImageView(getContext());
                                 ly_iamge.addView(imageView);
@@ -179,6 +183,7 @@ public class ExploreDetailActivity extends BaseActivity {
                                         .into(imageView);
 
                             } else if (attachmentfile.getFile_type().equals("application/pdf")) {
+                              //pdf file view
                                 View pdfView = mlflater.inflate(R.layout.detailpdflayout, null);
                                 TextView tv_fileName = pdfView.findViewById(R.id.tv_title);
                                 tv_fileName.setText(attachmentfile.getFile_name());
@@ -194,6 +199,7 @@ public class ExploreDetailActivity extends BaseActivity {
 
                             } else if (attachmentfile.getFile_type().equals("audio/mp3")||attachmentfile.getFile_type().equals("audio/wav")
                                     ||attachmentfile.getFile_type().equals("application/octet-stream")) {
+                                // record play view
                                 View voiceView = mlflater.inflate(R.layout.detailvoicelayout, null);
                                 AudioImageActivity audioObject =new AudioImageActivity(voiceView,attachmentfile.getFile_path(),ExploreDetailActivity.this);
                                 TextView tv_tittle = voiceView.findViewById(R.id.tv_title);
@@ -233,12 +239,12 @@ public class ExploreDetailActivity extends BaseActivity {
                     intent.addCategory("android.intent.category.DEFAULT");
                     intent.addFlags (Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.setDataAndType (Uri.fromFile(file), "application/pdf");
-                    startActivity(Intent.createChooser(intent, "标题"));
+                    startActivity(Intent.createChooser(intent, "tittle"));
                     finish();
                     break;
                 case DOWNLOAD_ERROR:
                     dismissLoadingView();
-                    Toast.makeText(getApplicationContext(), "下载失败！", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "download failed！", Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -250,25 +256,25 @@ public class ExploreDetailActivity extends BaseActivity {
             public void run() {
 
                 File haha = new File( file1.getAbsolutePath());
-                //判断是否有此文件
+                //Judge whether there is such a pdf.
                 if (haha.exists()) {
-                    //有缓存文件,拿到路径 直接打开
+                    //exists , open
                     Message msg = Message.obtain();
                     msg.obj = haha;
                     msg.what = DOWNLOAD_SUCCESS;
                     handler.sendMessage(msg);
                     return;
                 }
-//    本地没有此文件 则从网上下载打开
+//    No local file is downloaded from the Internet.
                 File downloadfile = downLoad(url, file1.getAbsolutePath());
 //    Log.i("Log",file1.getAbsolutePath());
                 Message msg = Message.obtain();
                 if (downloadfile != null) {
-                    // 下载成功,安装....
+                    // Download is successful, install...
                     msg.obj = downloadfile;
                     msg.what = DOWNLOAD_SUCCESS;
                 } else {
-                    // 提示用户下载失败.
+                    // Prompt user download failed.
                     msg.what = DOWNLOAD_ERROR;
                 }
                 handler.sendMessage(msg);
@@ -276,6 +282,8 @@ public class ExploreDetailActivity extends BaseActivity {
             };
         }.start();
     }
+
+    //download pdf
     public static File downLoad(String serverpath, String savedfilepath) {
         try {
             URL url = new URL(serverpath);

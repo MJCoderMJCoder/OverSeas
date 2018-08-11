@@ -77,6 +77,7 @@ public class ExploreActivity extends BaseActivity {
         });
         bar.showNotify();
         initData();
+        //Request Centre left area
         parentAdapter = new TypeListAdapter(this, R.drawable.normal,R.drawable.press2);
         parentAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
@@ -87,6 +88,7 @@ public class ExploreActivity extends BaseActivity {
                 }
             }
         });
+        //Request Centre right area
         childAdapter = new SectionListAdapter(this, R.drawable.normal, R.drawable.press);
         childAdapter.setBtn_search(btn_search);
         childAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {

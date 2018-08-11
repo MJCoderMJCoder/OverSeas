@@ -42,6 +42,7 @@ import retrofit2.Call;
 
 /**
  * Created by Administrator on 2018/1/18.
+ * request centre
  */
 public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.iv_menu)
@@ -92,6 +93,7 @@ public class ExploreFragment extends BaseFragment implements SwipeRefreshLayout.
     private void broadRecieve(){
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
+        //Get list based on broadcast data
         intentFilter.addAction("tellexfragment");
         BroadcastReceiver br = new BroadcastReceiver() {
             @Override

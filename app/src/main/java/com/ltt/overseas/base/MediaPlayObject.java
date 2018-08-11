@@ -43,7 +43,7 @@ public class MediaPlayObject{
     private ImageView mSoundIamge;
     private SeekBar seekBar;
     private TextView musicCur;
-    private String mMp3Path = "";//录音存放位置
+    private String mMp3Path = "";// play record location
     private View mView = null;
     private Activity mParentActivity;
     private SimpleDateFormat format=null;
@@ -90,7 +90,7 @@ public class MediaPlayObject{
     }
 
 
-    //由Uri转成路径的方法
+    //convert string from URI
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) return null;
         final String scheme = uri.getScheme();
@@ -114,7 +114,7 @@ public class MediaPlayObject{
         return data;
     }
 
-    //点击语音播放按钮
+    //click play voice
     private void clickPlayVoice(String mp3Path) {
         if (mp3Path.isEmpty())
             return;
