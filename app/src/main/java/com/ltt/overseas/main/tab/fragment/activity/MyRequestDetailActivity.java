@@ -43,7 +43,7 @@ public class MyRequestDetailActivity extends BaseActivity implements View.OnClic
     @BindView(R.id.listView)
     ListView listView;
 
-    private final String TAG = "(╯‵□′)╯︵┻━┻ 走你！";
+    private final String TAG = "MJCoder";
     private String conversation_id;
     private String user;
     private String date_created;
