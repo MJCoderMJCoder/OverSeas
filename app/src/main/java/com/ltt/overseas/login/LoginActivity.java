@@ -240,7 +240,7 @@ public class LoginActivity extends BaseActivity {
         }
         return canLogin;
     }
-
+    //this is login in normal
     private void login() {
         showLoadingView();
         LoginBean userParams = new LoginBean();
@@ -370,7 +370,7 @@ public class LoginActivity extends BaseActivity {
             Log.e(TAG, "---" + personName + "---" + personGivenName + "---" + personFamilyName + "---" + personEmail + "---" + personId + "---" + personPhoto + "---" +idToken);
         }
     }
-
+    //login in google
     private void loginWithGoogle(String idToken) {
         Call<GsonUserBean> fbcallback = RetrofitUtil.getAPIService().googlelogin(idToken);
         fbcallback.enqueue(new CustomerCallBack<GsonUserBean>() {
@@ -414,7 +414,7 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
     }
-
+    //login in Facebook
     private void loginWithFacebook(String token) {
         Call<GsonUserBean> fbcallback = RetrofitUtil.getAPIService().callback(token);
         fbcallback.enqueue(new CustomerCallBack<GsonUserBean>() {
