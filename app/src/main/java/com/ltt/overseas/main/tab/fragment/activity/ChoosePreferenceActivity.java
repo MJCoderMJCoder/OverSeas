@@ -47,6 +47,9 @@ public class ChoosePreferenceActivity extends BaseActivity {
         rvChildPreference.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.HORIZONTAL));
     }
 
+    /**
+     * get data
+     */
     private void initDate() {
         Call<PreferenceListBean> preferenceLists = RetrofitUtil.getAPIService().getPreferenceLists();
         preferenceLists.enqueue(new Callback<PreferenceListBean>() {

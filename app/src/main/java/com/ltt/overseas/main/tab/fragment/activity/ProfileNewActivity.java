@@ -137,6 +137,9 @@ public class ProfileNewActivity extends BaseActivity {
         initData();
     }
 
+    /**
+     * get data
+     */
     private void initData() {
         Call<UserProfileBean> userProfileBeanCall = RetrofitUtil.getAPIService().getUserProfileLists();
         userProfileBeanCall.enqueue(new Callback<UserProfileBean>() {
@@ -231,7 +234,10 @@ public class ProfileNewActivity extends BaseActivity {
     }
 
     private String con = "";
-
+    /**
+     *
+     * @param constr  change type
+     */
     private void updateUserCon(String constr) {
         con = constr;
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -273,7 +279,11 @@ public class ProfileNewActivity extends BaseActivity {
 
         popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
     }
-
+    /**
+     *
+     * @param con change's type
+     * @param upCon change's data
+     */
     private void update_change(String con, String upCon) {
         updateUserBean userParams = new updateUserBean();
         if (con.equals("firstname")) {
